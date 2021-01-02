@@ -1,3 +1,6 @@
+import { ContactPage } from './pages/contact/contact.page';
+import { SignupPage } from './pages/signup/signup.page';
+import { ProductPage } from './pages/product/product.page';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,9 +20,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutPage } from './pages/about/about.page';
+import { TestinoniesPage } from './pages/testinonies/testinonies.page';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage],
+  declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
+  TestinoniesPage, SignupPage, ContactPage,
+ProductPage],
   entryComponents: [],
   imports: [
     BrowserModule,

@@ -1,59 +1,38 @@
-<header>
-  <!-- header inner -->
-  <div class="header">
-     <div class="head_top">
-        <div class="container">
-           <div class="row">
-             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <div class="top-box">
-                 <ul class="sociel_link">
-                  <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                  <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li> <a href="#"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-             </div>
-           </div>
-           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <div class="top-box">
-                 <p>long established fact that a reader will be </p>
-             </div>
-           </div>
-        </div>
-     </div>
-  </div>
 
-  <div class="container">
-     <div class="row">
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-           <div class="full">
-              <div class="center-desk">
-                 <div class="logo"> <a href="index.html"><img src="assets/images/logo.jpg" alt="logo"/></a> </div>
-              </div>
-           </div>
-        </div>
-        <div class="col-xl-7 col-lg-7 col-md-9 col-sm-9">
-           <div class="menu-area">
-              <div class="limit-box">
-                 <nav class="main-menu">
-                    <ul class="menu-area-main">
-                       <li class="active"> <a href="index.html">Home</a> </li>
-                       <li> <a href="about.html">About</a> </li>
-                       <li> <a href="product.html">product</a> </li>
-                       <li> <a href="blog.html"> Blog</a> </li>
-                       <li> <a href="contact.html">Contact</a> </li>
-                       <li class="mean-last"> <a href="#contact">signup</a> </li>
-                        
-                    </ul>
-                 </nav>
-              </div>
-           </div>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
-           <li><a class="buy" href="#">Login</a></li>
-        </div>
+
+
+
+
+
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <div class="logo"> <a href="/"><img src="assets/images/logo.jpg" alt="logo"/></a> </div>
+       <ul class="navbar-nav mr-auto mt-2 mt-lg-0  ">
+         <li class=" ">
+            <a class="text-dark p-2"  [routerLink]="['/home']" routerLinkActive="router-link-active" > <strong>HOME</strong> </a> 
+         </li>
+         <li class=" ">
+            <a   class="text-dark p-2"  [routerLink]="['/products']" routerLinkActive="router-link-active" > <strong>PRODUCTS</strong></a>
+         </li>
+         <li class="">
+            <a class="text-dark p-2" [routerLink]="['/about']" routerLinkActive="router-link-active" > <strong>ABOUT</strong></a> 
+         </li>
+         <li class="nav-item">
+            <li> <a class="text-dark p-2" [routerLink]="['/testimonies']" routerLinkActive="router-link-active" > <strong>TESTIMONIES</strong> </a> 
+         </li>
+         <li class="nav-item">
+            <a class="text-dark p-2" [routerLink]="['/contact']" routerLinkActive="router-link-active" > <strong>CONTACT</strong> </a> 
+         </li>
+         <li class="nav-item">
+            <a  class="text-dark p-2" [routerLink]="['/signup']" routerLinkActive="router-link-active" > <strong>SIGNUP</strong></a> 
+         </li>
+       </ul>
+       <form class="form-inline my-2 my-lg-0">
+         <li><a class="buy" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a></li>
+       </form>
      </div>
-  </div>
-  <!-- end header inner --> 
-  </div>
-</header>
+   </nav>
+  
