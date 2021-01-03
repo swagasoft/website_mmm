@@ -28,6 +28,11 @@ export class AuthService {
       }
  
   
+       createUser(credentials) {
+        return this.http.post(environment.apiBaseUrl  + '/create-user',credentials);
+      }
+ 
+  
   
      
   
