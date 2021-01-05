@@ -1,3 +1,4 @@
+import { LogicService } from './../../services/logic.service';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -30,7 +31,7 @@ export class SignupPage implements OnInit {
         { type: 'pattern', message: 'Enter a valid username.' }
     ]
 };
-  constructor(private formBuilder: FormBuilder, private authService : AuthService) { }
+  constructor(private formBuilder: FormBuilder, private authService : AuthService, private logicService : LogicService) { }
 
   ngOnInit() {
 
@@ -70,8 +71,10 @@ export class SignupPage implements OnInit {
     console.log(this.signUpForm.value)
     this.authService.createUser(this.signUpForm.value).subscribe( res => {
       console.log(res)
+      this.logicService.showSuccess(res['message']);
     },
     err => {
+      this.logicService.showError(err.error.message);
       console.log(err);
       
     })

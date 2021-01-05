@@ -1,3 +1,5 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LogicService } from './services/logic.service';
 import { ContactPage } from './pages/contact/contact.page';
 import { SignupPage } from './pages/signup/signup.page';
 import { ProductPage } from './pages/product/product.page';
@@ -22,6 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutPage } from './pages/about/about.page';
 import { TestinoniesPage } from './pages/testinonies/testinonies.page';
 
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+
+
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
   TestinoniesPage, SignupPage, ContactPage,
@@ -33,7 +39,10 @@ ProductPage],
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [
     StatusBar,
@@ -41,6 +50,8 @@ ProductPage],
     UserService,
     HttpClient,
     AuthService,
+    LogicService,
+    ToastrService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
