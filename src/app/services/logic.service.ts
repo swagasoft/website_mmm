@@ -36,8 +36,15 @@ showSuccess(message) {
 }
 
 
-showError(message){
+showWarning(message){
   this.toastr.warning(message)
+}
+
+showError(message){
+  this.toastr.error(message)
+}
+showInfo(message){
+  this.toastr.info(message)
 }
 
 }

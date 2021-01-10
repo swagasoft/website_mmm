@@ -1,15 +1,13 @@
-
 <app-navbar></app-navbar>
 
 <ion-content>
-
 
   <div class="brand_color">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Contact Us</h2>
+                    <h2>Login</h2>
                 </div>
             </div>
         </div>
@@ -18,80 +16,68 @@
 </div>
 
 
-    <!-- contact -->
-    <div class="contact">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-12">
 
-                  <form class="main_form">
-                      <div class="row">
-                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                              <input class="form-control" placeholder="Your name" type="text" name="Your Name">
-                          </div>
-                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                              <input class="form-control" placeholder="Email" type="text" name="Email">
-                          </div>
-                          <div class=" col-md-12">
-                              <input class="form-control" placeholder="Phone" type="text" name="Phone">
-                          </div>
-                          <div class="col-md-12">
-                              <textarea class="textarea" placeholder="Message"></textarea>
-                          </div>
-                          <div class=" col-md-12">
-                              <button class="send">Send</button>
-                          </div>
-                      </div>
-                  </form>
+  <!-- contact -->
+  <div class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+         
+
+             
+
+                <div class=" text-center titlepage">
+                  <h2>Pocket Money Login</h2>
               </div>
-          </div>
-      </div>
-  </div>
-  <!-- end contact -->
 
+               <ion-card color="light">
+                <form class="main_form" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
+                    <div class="row ion-justify-content-center">
+                        
+                     
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                          <div *ngFor="let validation of validationMessages.email">
+                            <small class="text-danger"  *ngIf="signUpForm.get('email').hasError(validation.type) && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">  {{ validation.message }} </small>
+                          </div>
+                          <ion-item color="light">
+                            <input class="form-control" placeholder="Email" type="email" formControlName="email"  >
+                            <ion-icon slot="start" name="mail"></ion-icon>
+                          </ion-item>
   
+                        
+  
+                     
+  
+                          <div *ngFor="let validation of validationMessages.password">
+                            <small class="text-danger"  *ngIf="signUpForm.get('password').hasError(validation.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">  {{ validation.message }} </small>
+                          </div>
+                          <ion-item color="light">
+                            <input class="form-control" #password placeholder="Password " type="password" formControlName="password"  >
+                            <ion-icon slot="start" name="key"></ion-icon>
+                            <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+                            name="eye" slot="end"></ion-icon> 
+                          </ion-item>
+  
+                     
+                          <div class="ion-text-center m-3">
+                            <ion-button  (click)="submitForm()" [disabled]="!signUpForm.valid "  color="dark">Submit</ion-button>
+                            
+                        </div>
+  
+                        </div> 
+                   
+                        
+                    </div>
+                </form>
+               </ion-card>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-     
-
-      <!--  new login -->
-
-      <div class="ion-text-center">
-       
-        
-      </div>
-      <div class="center ">
-        <form class="form" #loginForm="ngForm" name="form" (keydown.enter)="loginForm.valid && login()"
-          (submit)="loginForm.valid && login()">
-        
-    
-          
-    
-          <ion-item class="ion-margin-bottom" color="light">
-            <ion-label color="danger" position="floating">Number</ion-label>
-            <ion-input type="number" #phone name="phone" clearInput [(ngModel)]="model.number" 
-              minlength="11" required="true"></ion-input>
-              <ion-icon name="call" slot="end"></ion-icon>
-          </ion-item>
-    
-    
-          <ion-item color="light" class="">
-            <ion-label color="danger" position="floating">Password</ion-label>
-            <ion-input class="" type="password" input #password name="password" minlength="6" [(ngModel)]="model.password"
-            clearInput required="true">
-            </ion-input>
-            <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
-              name="eye" slot="end"></ion-icon> 
-            
-          </ion-item>
-    
-    
-          <div class="myButton md-button " #submitBtn>
-            <ion-button mat-raised-button [disabled]="loginForm.valid" type="submit" color="success">LOGIN</ion-button>
-          </div>
-        </form>
-      </div>
-    
 
 
+<app-footer></app-footer>
 </ion-content>

@@ -1,5 +1,8 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { LogicService } from 'src/app/services/logic.service';
 
 @Component({
   selector: 'app-login',
@@ -8,26 +11,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public authService : AuthService) { }
-
-  model = {
-    number: '',
-    password: ''
-  };
-
-  ngOnInit() {}
 
 
+  signUpForm: FormGroup;
 
 
-  async login() {
-    console.log('login fire')
-    this.authService.login(this.model).subscribe(response => {
+  validationMessages = {
+    email: [
+        { type: 'required', message: 'Email is required.' },
+        { type: 'pattern', message: 'Enter a valid email.' }
+    ],
+    password: [
+        { type: 'required', message: 'Password is required.' },
+        { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+    ],
+  
+ 
+};
+  constructor(private formBuilder: FormBuilder, private authService : AuthService, private logicService : LogicService,
+    private router : Router) { }
+
+  ngOnInit() {
+
+    this.signUpForm = this.formBuilder.group({
+      email: new FormControl(null, Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
    
-        
-    }, err => {
-      console.log(err)
-    });
+   
+    
+      password: new FormControl(null, Validators.compose([
+        Validators.minLength(6),
+        Validators.required,
+    ])),
+ 
+   
+  });
   }
 
+
+  submitForm(){
+    console.log(this.signUpForm.value)
+    this.authService.login(this.signUpForm.value).subscribe( res => {
+      console.log(res)
+      console.log(res['token'])
+      this.authService.setToken(res['token']);
+      this.router.navigateByUrl('/tabs/dashboard')
+    },
+    err => {
+      this.logicService.showError(err.error.message);
+      console.log(err);
+      
+    })
+  }
 }

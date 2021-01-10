@@ -1,9 +1,15 @@
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { AccountComponent } from './components/account/account.component';
+import { WithdrawalComponent } from './components/withdrawal/withdrawal.component';
+import { DownlineComponent } from './components/downline/downline.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogicService } from './services/logic.service';
 import { ContactPage } from './pages/contact/contact.page';
 import { SignupPage } from './pages/signup/signup.page';
 import { ProductPage } from './pages/product/product.page';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomePage } from './pages/home/home.page';
@@ -26,11 +32,17 @@ import { TestinoniesPage } from './pages/testinonies/testinonies.page';
 
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { TabsPage } from './pages/tabs/tabs.page';
+import { AuthInterceptor } from './auth/Auth-interceptor';
 
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
-  TestinoniesPage, SignupPage, ContactPage,
+  TestinoniesPage, SignupPage, ContactPage,TabsPage, DashboardComponent,ProfileComponent,
+  DownlineComponent,
+  WithdrawalComponent,
+  AccountComponent,
+  EditProfileComponent,
 ProductPage],
   entryComponents: [],
   imports: [
@@ -52,6 +64,7 @@ ProductPage],
     AuthService,
     LogicService,
     ToastrService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

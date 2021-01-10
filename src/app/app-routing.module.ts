@@ -1,11 +1,18 @@
+import { WithdrawalComponent } from './components/withdrawal/withdrawal.component';
+import { AccountComponent } from './components/account/account.component';
+import { DownlineComponent } from './components/downline/downline.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { TabsPage } from './pages/tabs/tabs.page';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'tabs/dashboard',
     pathMatch: 'full'
   },
   {
@@ -39,6 +46,17 @@ const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'tabs',
+    component: TabsPage,
+    children:[
+      {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+      {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+      {path:'down-line', component: DownlineComponent, canActivate:[AuthGuard]},
+      {path:'account', component: AccountComponent, canActivate:[AuthGuard]},
+      {path:'withdrawal', component: WithdrawalComponent, canActivate:[AuthGuard]},
+    ]
   }
 ];
 

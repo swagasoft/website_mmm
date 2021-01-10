@@ -1,0 +1,100 @@
+
+
+
+<ion-content class="ion-padding">
+
+  <ion-chip class="text-center" *ngIf="!userDetails?.bank || !userDetails?.bank_account_name || !userDetails?.bank_account_number"
+   color="danger" mode="ios" >
+    <ion-label>Your bank details need to be updated, click edit tp update</ion-label>
+  </ion-chip>
+
+  <ion-grid fixed >
+                <!--  Show users -->
+             <ion-row>
+               <ion-col >
+                <ion-list >
+
+                  <ng-container >
+                    <ion-item color="light" >
+                      <ion-avatar slot="start">
+                        <img src="../../assets/user_icon.webp">
+                      </ion-avatar>
+                      <ion-label>
+
+                        <p>{{userDetails?.fullname}} </p>
+                      </ion-label>
+                      <ion-button (click)="passwordAlert()"
+                      color="danger">edit</ion-button>
+                    </ion-item>
+                    <ion-item color="light" >
+                      <ion-label>
+                        <!-- <h3>Torama User</h3> -->
+                        <ion-icon name="mail"></ion-icon>
+                        <h6>{{userDetails?.email}} </h6>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="person"></ion-icon>
+                        <h6> {{userDetails?.username}} </h6>
+                      </ion-label>
+
+                    </ion-item>
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="call"></ion-icon>
+                        <h6> {{userDetails?.phone}} </h6>
+                      </ion-label>
+
+                    </ion-item>
+
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="key"></ion-icon>
+                        <h6> {{userDetails?.role}} </h6>
+                      </ion-label>
+
+                    </ion-item>
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="key"></ion-icon>
+                        <h6>id : 000{{userDetails?.user_id}} </h6>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="key"></ion-icon>
+                        <h6> {{userDetails?.role}} </h6>
+                      </ion-label>
+                    </ion-item>
+
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="business"></ion-icon>
+                        <h6> bank : {{userDetails?.bank}} </h6>
+                      </ion-label>
+                    </ion-item>
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="card"></ion-icon>
+                        <h6>  account no : {{userDetails?.bank_account_no}} </h6>
+                      </ion-label>
+                    </ion-item>
+
+                    <ion-item color="light" >
+                      <ion-label>
+                       <ion-icon name="pencil"></ion-icon>
+                        <h6> account name : {{userDetails?.bank_account_name}} </h6>
+                      </ion-label>
+                    </ion-item>
+                    
+                  </ng-container>
+                </ion-list>
+               </ion-col>
+             </ion-row>
+
+
+  </ion-grid>
+
+
+</ion-content>

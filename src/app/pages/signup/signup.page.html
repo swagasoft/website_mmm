@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Sign up</h2>
+                    <h2>Sign up Registration</h2>
                 </div>
             </div>
         </div>
@@ -69,16 +69,20 @@
                           <small class="text-danger"  *ngIf="signUpForm.get('password').hasError(validation.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">  {{ validation.message }} </small>
                         </div>
                         <ion-item color="light">
-                          <input class="form-control" placeholder="Password " type="password" formControlName="password"  >
+                          <input class="form-control" #password placeholder="Password " type="password" formControlName="password"  >
                           <ion-icon slot="start" name="key"></ion-icon>
+                          <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+                          name="eye" slot="end"></ion-icon> 
                         </ion-item>
 
                         <div *ngIf=" signUpForm.get('password').value !== signUpForm.get('password_conf').value">
                           <small class="text-danger"  >  password not matched </small>
                         </div>
                         <ion-item color="light">
-                          <input class="form-control" placeholder="Password confirm" type="password" formControlName="password_conf"  >
+                          <input #password_conf class="form-control" placeholder="Password confirm" type="password" formControlName="password_conf"  >
                           <ion-icon slot="start" name="key"></ion-icon>
+                          <ion-icon  (click)="password_conf.type=password_conf.type=='password'?'text':'password'" 
+                          name="eye" slot="end"></ion-icon> 
                         </ion-item>
 
                         <ion-item color="light">

@@ -38,8 +38,22 @@ export class AuthService {
   
        getEmail(){
         let payLoad = jwtDecode(this.token);
-        let email = payLoad['sub'];
+        let email = payLoad['email'];
         return email;
+       }
+     
+
+       getRole(){
+        let payLoad = jwtDecode(this.token);
+        let role = payLoad['role'];
+        return role;
+       }
+     
+
+       getAuthId(){
+        let payLoad = jwtDecode(this.token);
+        let user_id = payLoad['_id'];
+        return user_id;
        }
      
   
@@ -47,18 +61,11 @@ export class AuthService {
   
   
       public getToken(): string {
-        this.token = localStorage.getItem('admin-token');
+        this.token = localStorage.getItem('token');
         return this.token;
         }
   
-        setAuthId(id){
-          localStorage.setItem('auth', id);
-        }
-  
-        getAuthId(){
-         return localStorage.getItem('auth');
-        }
-  
+     
   
      
   
@@ -84,19 +91,19 @@ export class AuthService {
   
        setToken(token: string) {
          this.token = token;
-        localStorage.setItem('admin-token', token);
+        localStorage.setItem('token', token);
        
        }
   
        deleteToken() {
-        window.localStorage.removeItem('admin-token');
+        window.localStorage.removeItem('token');
       }
   
        public logout(): void {
         this.deleteToken();
         localStorage.clear();
         this.token = '';
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/login');
        }
   
     
