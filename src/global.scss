@@ -24,3 +24,24 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.my-modal {
+    height: 100%!important;
+    width: 100%!important;
+  } 
+
+
+
+.spinner-container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 53%;
+    // margin-bottom: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+  }
+  

@@ -1,29 +1,69 @@
 <ion-app>
-  <!-- <ion-split-pane contentId="main-content"> -->
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+  <!-- <ion-split-pane when="md"  contentId="main-content"> -->
+    <ion-menu  *ngIf="authService.isLoggedIn()"  contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="light">
+            
+           <ion-menu-toggle>
+             <ion-item color="medium" class="ion-padding"> 
+              <small class="p-5 pt-2 pl-1 text-uppercase" [routerLink]="['/tabs/setting']"
+              >user  </small> <br>
+              <small class="p-5 pl-1 text-uppercase" [routerLink]="['/setting']"
+              >MY ROLE </small> <br>
+         
+             </ion-item>
+           </ion-menu-toggle>
+    
+                <ion-row class="ml-5">
+                  <ion-col class="ml-5">
+                    <div #bal class="rubberBand animated infinite" >
+                      <ion-icon name="swap" size="large" ></ion-icon>
+                    </div>
+                  </ion-col>
+                </ion-row>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content > 
+        <ion-list color="light">
+          <ion-list-header color="light" >MANAGEMENT</ion-list-header>
+          <ion-menu-toggle  auto-hide="false" *ngFor="let p of appPages">
+            <ion-item color="light" [routerDirection]="'root'" [routerLink]="[p.url]" routerLinkActive="router-link-active">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
             </ion-item>
           </ion-menu-toggle>
+       
         </ion-list>
-
+    
+        <ion-list color="light">
+          <ion-list-header color="light">DIRECTOR</ion-list-header>
+           <ion-menu-toggle autoHide="false">
+            <ion-item  color="light"   [routerLink]="['/tabs/admin']" routerLinkActive="router-link-active">
+              <ion-icon name="list"></ion-icon>
+              <ion-label  class="ml-4">ADMIN</ion-label>
+            </ion-item>
+           </ion-menu-toggle>
+          
+         
+        </ion-list>
         <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
+          <ion-menu-toggle autoHide="false"> 
+            <ion-item  color="light" (click)="logout()" tappable  detail="false">
+              <ion-icon  name="power"></ion-icon>
+              <ion-label  class="ml-4">LOGOUT</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+      </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  <!-- </ion-split-pane> -->
+      <ion-router-outlet  id="main-content"></ion-router-outlet> 
+      <!-- </ion-split-pane> -->
+    
+ 
+      <div *ngIf="logicService.spinner" class="spinner-container">
+        <img src="../assets/gif/3.gif"  class="spinner-image" alt="">
+    </div>
+
 </ion-app>

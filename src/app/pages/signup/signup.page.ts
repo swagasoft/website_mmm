@@ -29,6 +29,15 @@ export class SignupPage implements OnInit {
         { type: 'required', message: 'Username is required.' },
         { type: 'minlength', message: 'Username must be at least 6 characters long.' },
         { type: 'pattern', message: 'Enter a valid username.' }
+    ],
+    bank: [
+        { type: 'required', message: 'Bank is required.' }
+    ],
+    bank_account_name: [
+        { type: 'required', message: 'Bank account name is required.' }
+    ],
+    bank_account_number: [
+        { type: 'required', message: 'Bank account number is required.' }
     ]
 };
   constructor(private formBuilder: FormBuilder, private authService : AuthService, private logicService : LogicService) { }
@@ -46,9 +55,7 @@ export class SignupPage implements OnInit {
           Validators.required,
           Validators.pattern('^(?![\s.]+$)[1-9a-zA-Z\s.]*$')
       ])),
-      phone: new FormControl(null, Validators.compose([
-          Validators.required,
-          Validators.minLength(11),
+      phone: new FormControl('', Validators.compose([Validators.required,  Validators.minLength(11),
       ])),
       password: new FormControl(null, Validators.compose([
         Validators.minLength(6),
@@ -60,9 +67,9 @@ export class SignupPage implements OnInit {
     ])),
       role: new FormControl('USER'),
       referral: new FormControl(null),
-      bank: new FormControl(null),
-      bank_account_name: new FormControl(null),
-      bank_account_number: new FormControl(null),
+      bank: new FormControl(null, Validators.required),
+      bank_account_name: new FormControl(null, Validators.required),
+      bank_account_number: new FormControl(null, Validators.required),
   });
   }
 
@@ -72,6 +79,7 @@ export class SignupPage implements OnInit {
     this.authService.createUser(this.signUpForm.value).subscribe( res => {
       console.log(res)
       this.logicService.showSuccess(res['message']);
+      this.signUpForm.reset();
     },
     err => {
       this.logicService.showError(err.error.message);

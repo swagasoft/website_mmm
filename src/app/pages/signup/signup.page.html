@@ -42,7 +42,8 @@
                    
                       <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div *ngFor="let validation of validationMessages.email">
-                          <small class="text-danger"  *ngIf="signUpForm.get('email').hasError(validation.type) && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">  {{ validation.message }} </small>
+                          <small class="text-danger"  *ngIf="signUpForm.get('email').hasError(validation.type) 
+                          && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">  {{ validation.message }} </small>
                         </div>
                         <ion-item color="light">
                           <input class="form-control" placeholder="Email" type="email" formControlName="email"  >
@@ -53,7 +54,7 @@
                           <small class="text-danger"  *ngIf="signUpForm.get('phone').hasError(validation.type) && (signUpForm.get('phone').dirty || signUpForm.get('phone').touched)">  {{ validation.message }} </small>
                         </div>
                         <ion-item color="light">
-                          <input class="form-control" placeholder="Phone" type="phone" formControlName="phone" >
+                          <input class="form-control" placeholder="Phone" type="text" formControlName="phone" >
                           <ion-icon slot="start" name="call"></ion-icon>
                         </ion-item>
 
@@ -90,15 +91,26 @@
                           <ion-icon slot="start" name="person"></ion-icon>
                         </ion-item>
 
+                        <div *ngFor="let validation of validationMessages.bank">
+                          <small class="text-danger"  *ngIf="signUpForm.get('bank').hasError(validation.type) && (signUpForm.get('bank').dirty || signUpForm.get('bank').touched)">  {{ validation.message }} </small>
+                        </div>
                         <ion-item color="light">
                           <input class="form-control" placeholder="Bank" type="text" formControlName="bank"  >
                           <ion-icon slot="start" name="briefcase"></ion-icon>
                         </ion-item>
 
+                        <div *ngFor="let validation of validationMessages.bank_account_name">
+                          <small class="text-danger"  *ngIf="signUpForm.get('bank_account_name').hasError(validation.type) && (signUpForm.get('bank_account_name').dirty || signUpForm.get('bank_account_name').touched)">  {{ validation.message }} </small>
+                        </div>
                         <ion-item color="light">
                           <input class="form-control" placeholder="Bank account name" type="text" formControlName="bank_account_name"  >
                           <ion-icon slot="start" name="pricetag"></ion-icon>
                         </ion-item>
+
+
+                        <div *ngFor="let validation of validationMessages.bank_account_number">
+                          <small class="text-danger"  *ngIf="signUpForm.get('bank_account_number').hasError(validation.type) && (signUpForm.get('bank_account_number').dirty || signUpForm.get('bank_account_number').touched)">  {{ validation.message }} </small>
+                        </div>
 
                         <ion-item color="light">
                           <input class="form-control" placeholder="Bank account number" type="number" formControlName="bank_account_number"  >

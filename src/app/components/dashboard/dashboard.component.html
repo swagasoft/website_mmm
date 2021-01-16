@@ -1,74 +1,93 @@
 
+ <ion-header>
+  <ion-toolbar color="light">
+    
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
  
+  </ion-toolbar>
+</ion-header>
 <ion-content>
 
 
 
 
-
-  <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="flex-row d-flex">
-      <a class="navbar-brand mb-1" href="#">Brand</a>
-      <button type="button" class="hidden-md-up navbar-toggler" data-toggle="offcanvas" title="Toggle responsive left sidebar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">Home</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#features">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#myAlert" data-toggle="collapse">Wow</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="" data-target="#myModal" data-toggle="modal">About</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
   <div class="container-fluid" id="main">
-    <div class="row row-offcanvas row-offcanvas-left">
-      <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
-        <ul class="nav flex-column pl-1">
-          <li class="nav-item"><a class="nav-link" href="#">Overview</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#submenu1" data-toggle="collapse" data-target="#submenu1">Reports ▾</a>
-            <ul class="list-unstyled flex-column pl-3 collapse" id="submenu1" aria-expanded="false">
-              <li class="nav-item"><a class="nav-link" href="">Sub item</a></li>
-              <li class="nav-item"><a class="nav-link" href="">Sub item</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Export</a></li>
-          <li class="nav-item"><a class="nav-link" href="">Nav item</a></li>
-          <li class="nav-item"><a class="nav-link" href="">Nav item</a></li>
-          <li class="nav-item"><a class="nav-link" href="">Another</a></li>
-          <li class="nav-item"><a class="nav-link" href="">Nav item</a></li>
-          <li class="nav-item"><a class="nav-link" href="">One more</a></li>
-        </ul>
-      </div>
+    <div class="row row-offcanvas row-offcanvas-left justify-content-center ">
       <!--/col-->
 
-      <div class="col-md-9 col-lg-10 main">
+      <div class="col-md-9 col-lg-10 main ">
 
         <!--toggle sidebar button
             <p class="hidden-md-up">
                 <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
             </p>-->
 
-        <h1 class="display-4 hidden-xs-down">
-          Welcome  {{userDetails?.username}} !
+
+        <h1 class="text-center display-4 hidden-xs-down">
+          Welcome   <strong>{{userDetails?.username}}</strong> !
             </h1>
-        <p class="lead hidden-xs-down">(with off-canvas sidebar, based on BS v4 alpha 6)</p>
+
+           <div class="ion-text-center">
+            <img  src="assets/banks.jpg" width="400" alt="">
+           </div>
+        <p class="lead hidden-xs-down text-center font-weight-bold">Make payment with any bank of choice or 
+          transfer to the account below and upload your transaction receipt </p>
+
+         <ion-card class="text-center" color="light">
+          <h5 class="font-weight-bold">Zenith Bank</h5>
+          <h5 class="font-weight-bold">Pocket Money Osusu</h5>
+          <h5 class="font-weight-bold">34483848584</h5>
+         </ion-card>
+
+
+       <ion-grid fixed>
+         <ion-row>
+           <ion-col size-sm="12" size-md="6" size-lg="6" class="justify-content-center">
+            <ion-item color="warning">
+              <ion-label>Enter Amount</ion-label>
+              <ion-input type="number" [(ngModel)]="amountModel.amount" ></ion-input>
+              <ion-icon slot="end" name="add"></ion-icon>
+            </ion-item>
+
+           </ion-col>
+
+           <ion-col class="justify-content-center"  size-sm="12" size-md="6" size-lg="6">
+            <ion-button color="warning" (click)="uploadTransReceipt()" expand="block" fill="solid" >
+             <ion-chip color="primary" mode="ios" outline="true">
+               <ion-label>upload receipt</ion-label>
+               <ion-icon name="close-circle"></ion-icon>
+             </ion-chip>
+            </ion-button>
+           </ion-col>
+         </ion-row>
+       </ion-grid>
+
+       <div class="row justify-content-center">
+        <flutterwave-make-payment *ngIf="amountModel.amount > 99"
+        [public_key]="publicKey"
+        [amount]='amountModel.amount'
+        currency='NGN'
+        payment_options="card"
+        text="Pay Now"
+        [customer]="customerDetails"
+        [customizations]="customizations"
+        [tx_ref]="generateReference()"
+        (callback)="makePaymentCallback($event)"
+        (close)="closedPaymentModal()" >
+        <ion-chip color="primary" mode="ios" outline="true">
+          <ion-label>Pay Now</ion-label>
+          <ion-icon name="close-circle"></ion-icon>
+        </ion-chip>
+    </flutterwave-make-payment>`
+
+       </div>
+
+
+      
+
+ 
 
         <div class="alert alert-warning fade collapse" role="alert" id="myAlert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -78,8 +97,8 @@
           <strong>Holy guacamole!</strong> It's free.. this is an example theme.
         </div>
 
-        <div class="row mb-3">
-          <div class="col-xl-3 col-lg-6">
+        <div class="row mb-3 ">
+          <div class="col-md-6 col-sm-12 col-lg-6 ">
             <div class="card card-inverse card-success">
               <div class="card-block bg-success">
                 <div class="rotate">
@@ -92,7 +111,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-6">
+          <div class="col-md-6 col-sm-12 col-lg-6">
             <div class="card card-inverse card-danger">
               <div class="card-block bg-danger">
                 <div class="rotate">
@@ -105,25 +124,25 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-6">
+          <div class="col-md-6 col-sm-12 col-lg-6">
             <div class="card card-inverse card-info">
               <div class="card-block bg-info">
                 <div class="rotate">
                   <i class="fa fa-twitter fa-5x"></i>
                 </div>
-                <h6 class="text-uppercase">Tweets</h6>
-                <h1 class="display-1">125</h1>
+                <h6 class="text-uppercase">Accrued</h6>
+                <h1 class="display-3">₦0.00</h1>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-6">
+          <div class="col-md-6 col-sm-12 col-lg-6">
             <div class="card card-inverse card-warning">
               <div class="card-block bg-warning">
                 <div class="rotate">
                   <i class="fa fa-share fa-5x"></i>
                 </div>
-                <h6 class="text-uppercase">Shares</h6>
-                <h1 class="display-1">36</h1>
+                <h6 class="text-uppercase text-center">Withdrawal Request</h6>
+                <h1 class="display-3">{{userDetails?.withdrawal_req |currency:'₦'}} </h1>
               </div>
             </div>
           </div>
@@ -133,26 +152,41 @@
         <hr>
 
         <div class="row placeholders mb-3">
-          <div class="col-6 col-sm-3 placeholder text-center">
-            <img src="//placehold.it/200/dddddd/fff?text=" class="center-block img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>Responsive</h4>
-            <span class="text-muted">Device agnostic</span>
+          <div class="col-6  placeholder text-center">
+            <ion-card color="light">
+              <ion-list>
+                <h4 class="text-secondary">₦1,000</h4>
+                <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
+                <h3 class="p-2 text-warning">₦1500</h3>
+              </ion-list>
+            </ion-card>
+            <h6>₦1,000 will retunrn ₦1,500 in 26hours</h6>
+            <ion-button [disabled]="!userDetails?.one_k_investment" (click)="onClick()" expand="block" fill="solid" shape="round">
+              invest now 
+            </ion-button>
+           <ion-chip color="primary" mode="ios" outline="true">
+             <ion-label>Unlock Package</ion-label>
+           </ion-chip>
           </div>
-          <div class="col-6 col-sm-3 placeholder text-center">
-            <img src="//placehold.it/200/e4e4e4/fff?text=2" class="center-block img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>Frontend</h4>
-            <span class="text-muted">UI / UX oriented</span>
+
+          <div class="col-6  placeholder text-center">
+            <ion-card color="light">
+              <ion-list>
+                <h4 class="text-secondary">₦5,000</h4>
+                <i  class=" text-danger fas fa-hand-holding-usd fa-3x"></i>
+                <h3 class="p-2 text-danger">₦7,500</h3>
+              </ion-list>
+            </ion-card>
+            <h6>₦5,000 will retunrn ₦7,500 in 24hours</h6>
+            <ion-button [disabled]="!userDetails?.five_k_investment" (click)="onClick()" expand="block" fill="solid" shape="round">
+              invest now 
+            </ion-button>
+           <ion-chip color="primary" mode="ios" outline="true">
+             <ion-label>Unlock Package</ion-label>
+           </ion-chip>
           </div>
-          <div class="col-6 col-sm-3 placeholder text-center">
-            <img src="//placehold.it/200/d6d6d6/fff?text=3" class="center-block img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>HTML5</h4>
-            <span class="text-muted">Standards-based</span>
-          </div>
-          <div class="col-6 col-sm-3 placeholder text-center">
-            <img src="//placehold.it/200/e0e0e0/fff?text=4" class="center-block img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>Framework</h4>
-            <span class="text-muted">CSS and JavaScript</span>
-          </div>
+
+        
         </div>
 
         <a id="features"></a>

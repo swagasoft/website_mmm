@@ -1,3 +1,7 @@
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { NoticeBoardComponent } from './components/notice-board/notice-board.component';
+import { FireService } from './services/fire.service';
+import { UploadComponent } from './components/upload/upload.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AccountComponent } from './components/account/account.component';
 import { WithdrawalComponent } from './components/withdrawal/withdrawal.component';
@@ -34,7 +38,9 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { TabsPage } from './pages/tabs/tabs.page';
 import { AuthInterceptor } from './auth/Auth-interceptor';
-
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { FlutterwaveModule } from 'flutterwave-angular-v3';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
@@ -43,17 +49,24 @@ import { AuthInterceptor } from './auth/Auth-interceptor';
   WithdrawalComponent,
   AccountComponent,
   EditProfileComponent,
+  UploadComponent,
+  NoticeBoardComponent,
+  TransactionsComponent,
+
 ProductPage],
-  entryComponents: [],
+  entryComponents: [UploadComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     HttpClientModule,
     ToastrModule.forRoot(),
+    FlutterwaveModule,
     BrowserAnimationsModule,
+
     CommonModule
   ],
   providers: [
@@ -64,6 +77,8 @@ ProductPage],
     AuthService,
     LogicService,
     ToastrService,
+  
+    FireService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

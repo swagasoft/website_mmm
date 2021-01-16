@@ -1,3 +1,6 @@
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { NoticeBoardComponent } from './components/notice-board/notice-board.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { WithdrawalComponent } from './components/withdrawal/withdrawal.component';
 import { AccountComponent } from './components/account/account.component';
 import { DownlineComponent } from './components/downline/downline.component';
@@ -56,6 +59,9 @@ const routes: Routes = [
       {path:'down-line', component: DownlineComponent, canActivate:[AuthGuard]},
       {path:'account', component: AccountComponent, canActivate:[AuthGuard]},
       {path:'withdrawal', component: WithdrawalComponent, canActivate:[AuthGuard]},
+      {path:'admin', component: AdminComponent, canActivate:[AuthGuard]},
+      {path:'notice-board', component: NoticeBoardComponent, canActivate:[AuthGuard]},
+      {path:'transactions', component: TransactionsComponent, canActivate:[AuthGuard]},
     ]
   }
 ];

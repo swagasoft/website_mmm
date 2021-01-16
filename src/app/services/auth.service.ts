@@ -49,6 +49,12 @@ export class AuthService {
         return role;
        }
      
+       getUsername(){
+        let payLoad = jwtDecode(this.token);
+        let role = payLoad['username'];
+        return role;
+       }
+     
 
        getAuthId(){
         let payLoad = jwtDecode(this.token);

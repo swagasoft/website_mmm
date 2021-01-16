@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class LogicService {
+spinner: Boolean;
 
   constructor(private alertController: AlertController, private toastr: ToastrService) { }
 
@@ -45,6 +46,15 @@ showError(message){
 }
 showInfo(message){
   this.toastr.info(message)
+}
+
+
+showSpinner(){
+  this.spinner = true;
+}
+
+dismissSpinner(){
+  this.spinner = false;
 }
 
 }

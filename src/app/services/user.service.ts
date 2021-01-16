@@ -16,5 +16,14 @@ export class UserService {
   updateUserProfile(user) {
     return this.http.put(environment.apiBaseUrl  + '/update-user-details',user);
   }
+  submitTransaction(trans) {
+    return this.http.post(environment.apiBaseUrl  + '/submit-trans',trans);
+  }
+  getTransaction() {
+    return this.http.get(environment.apiBaseUrl  + '/transactions');
+  }
+  manualTransfer(trans) {
+    return this.http.post(environment.apiBaseUrl  + '/manual-transfer', trans);
+  }
 }
  
