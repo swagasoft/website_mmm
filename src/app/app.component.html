@@ -40,7 +40,7 @@
         <ion-list color="light">
           <ion-list-header color="light">DIRECTOR</ion-list-header>
            <ion-menu-toggle autoHide="false">
-            <ion-item  color="light"   [routerLink]="['/tabs/admin']" routerLinkActive="router-link-active">
+            <ion-item  color="light"   [routerLink]="['/admin-tabs/admin-trans']" routerLinkActive="router-link-active">
               <ion-icon name="list"></ion-icon>
               <ion-label  class="ml-4">ADMIN</ion-label>
             </ion-item>
@@ -48,14 +48,7 @@
           
          
         </ion-list>
-        <ion-list id="labels-list">
-          <ion-menu-toggle autoHide="false"> 
-            <ion-item  color="light" (click)="logout()" tappable  detail="false">
-              <ion-icon  name="power"></ion-icon>
-              <ion-label  class="ml-4">LOGOUT</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-      </ion-list>
+     
       </ion-content>
     </ion-menu>
       <ion-router-outlet  id="main-content"></ion-router-outlet> 

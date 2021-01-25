@@ -1,3 +1,50 @@
-<p>
-  transactions works!
-</p>
+
+
+ <ion-header>
+  <ion-toolbar color="light">
+    
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+ 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+    <div class="col-lg-3 col-md-4  justify-content-center">
+ 
+ 
+
+    </div>
+    <div class="col-lg-9 col-md-8">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Trans Id</th>
+              <th>username</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of transList; index as i">
+              <td>{{i + 1}} </td>
+              <td>{{item.amount |currency:'₦'}} </td>
+              <td>{{item?.status}} </td>
+              <td>{{item?.transaction_id}} </td>
+              <td>{{item?.name}} </td>
+              <td>{{item?.date |date:'medium'}} </td>
+            </tr>
+          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+</ion-content>

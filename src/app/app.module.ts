@@ -1,3 +1,8 @@
+import { PreviewComponent } from './components/preview/preview.component';
+import { AdminWithdrawalComponent } from './components/admin-withdrawal/admin-withdrawal.component';
+import { AdminTransComponent } from './components/admin-trans/admin-trans.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { BonusComponent } from './components/bonus/bonus.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { NoticeBoardComponent } from './components/notice-board/notice-board.component';
 import { FireService } from './services/fire.service';
@@ -41,6 +46,7 @@ import { AuthInterceptor } from './auth/Auth-interceptor';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { FlutterwaveModule } from 'flutterwave-angular-v3';
+import { AdminTabsPage } from './pages/admin-tabs/admin-tabs.page';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
@@ -52,9 +58,15 @@ import { FlutterwaveModule } from 'flutterwave-angular-v3';
   UploadComponent,
   NoticeBoardComponent,
   TransactionsComponent,
+  BonusComponent,
+  AdminComponent,
+  AdminTransComponent,
+  AdminWithdrawalComponent,
+  AdminTabsPage,
+  PreviewComponent,
 
 ProductPage],
-  entryComponents: [UploadComponent],
+  entryComponents: [UploadComponent, PreviewComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

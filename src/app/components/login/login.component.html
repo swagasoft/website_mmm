@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Login</h2>
+                    <h4>50% Profit in 24 hours</h4>
                 </div>
             </div>
         </div>
@@ -19,24 +19,22 @@
 
   <!-- contact -->
   <div class="contact">
-    <div class="container">
+    <div class="">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 ">
 
          
 
-             
-
                 <div class=" text-center titlepage">
-                  <h2>Pocket Money Login</h2>
+                  <img src="../../../assets/images/logo.png" alt="">
+                  <h2> Login</h2>
               </div>
 
-               <ion-card color="light">
-                <form class="main_form" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
-                    <div class="row ion-justify-content-center">
-                        
-                     
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+               <!-- <ion-card color="light"> -->
+                <div class="row ion-justify-content-center">
+                  <div >
+
+                <form class="" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
                           <div *ngFor="let validation of validationMessages.email">
                             <small class="text-danger"  *ngIf="signUpForm.get('email').hasError(validation.type) && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">  {{ validation.message }} </small>
                           </div>
@@ -47,30 +45,28 @@
   
                         
   
-                     
-  
                           <div *ngFor="let validation of validationMessages.password">
                             <small class="text-danger"  *ngIf="signUpForm.get('password').hasError(validation.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">  {{ validation.message }} </small>
                           </div>
                           <ion-item color="light">
                             <input class="form-control" #password placeholder="Password " type="password" formControlName="password"  >
                             <ion-icon slot="start" name="key"></ion-icon>
-                            <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
-                            name="eye" slot="end"></ion-icon> 
+                            <!-- <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+                            name="eye" slot="end"></ion-icon>  -->
                           </ion-item>
+
+                          <div>Don't have account? <strong [routerLink]="['/signup']" >Sign Up</strong> </div>
   
                      
                           <div class="ion-text-center m-3">
                             <ion-button  (click)="submitForm()" [disabled]="!signUpForm.valid "  color="dark">Submit</ion-button>
-                            
                         </div>
-  
-                        </div> 
-                   
-                        
-                    </div>
                 </form>
-               </ion-card>
+              </div>    
+            </div>
+
+
+               <!-- </ion-card> -->
             </div>
         </div>
     </div>

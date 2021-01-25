@@ -19,6 +19,7 @@ export class UploadComponent implements OnInit {
 notice :  any;
   imageRef: any;
 
+  loading = false;
 
   constructor( private logicService : LogicService,  private fireService : FireService, private authService: AuthService,
   private modalController : ModalController, private userService : UserService){
@@ -47,6 +48,7 @@ console.log('size', this.fileToUpload.size)
 
   uploadImage(){
 console.log('upload started')
+this.loading = true;
 
 try {
   this.fireService.uploadImage(this.authService.getEmail(), this.fileToUpload).then((success)=> {
@@ -55,6 +57,7 @@ try {
     this.downloadImage();
   });
 } catch (error) {
+  this.loading = false;
   console.log(error);
   this.logicService.showError('Error uploading document, check your connection and try again.');
 
@@ -66,18 +69,23 @@ try {
     this.fireService.downloadItem(this.imageRef).subscribe(imageUrl => {
       console.log(imageUrl);
       this.model.image = imageUrl;
-    })
+      this.userService.manualTransfer(this.model).subscribe(result => {
+        console.log(' success',result);
+        this.loading = false;
+        this.closeModal();
+        this.logicService.showSuccess('You receipt is submitted, Admin will confirm your account shortly');
+      }, err => {
+        this.loading = false;
+        this.logicService.showError('Error saving receipt!');
+      });
+    });
   }
 
 
   closeModal(){
-    this.modalController.dismiss({data: this.model});
+    this.modalController.dismiss();
   }
 
-  confirmTransaction(){
-    this.userService.manualTransfer(this.model).subscribe(result => {
-      console.log(' success',result);
-    })
-  }
+
   
 }

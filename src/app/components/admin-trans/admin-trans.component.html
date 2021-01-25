@@ -1,0 +1,63 @@
+
+ <ion-header>
+  <ion-toolbar color="light">
+    
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+ 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+
+
+
+  <div class="col-lg-3 col-md-4  justify-content-center">
+ 
+ 
+
+  </div>
+  <div class="col-lg-9 col-md-8">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Trans Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Receipt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of transList; index as i">
+            <td>{{i + 1}} </td>
+            <td>{{item.amount |currency:'₦'}} </td>
+            <td>
+               <div *ngIf="item?.status =='successful'  " class="text-success font-weight-bold">{{item?.status}}</div>
+               <div *ngIf="item?.status =='waiting'  " class="text-warning font-weight-bold">{{item?.status}}</div>
+             </td>
+            <td>{{item?.transaction_id}} </td>
+            <td>{{item?.name}} </td>
+            <td>{{item?.email}} </td>
+            <td> <small>{{item?.date |date:'medium'}}</small> </td>
+            <ion-button *ngIf="item?.image" (click)="previewReceipt(item?.image)"  color="dark" shape="round">
+              View receipt
+            </ion-button>
+
+            <ion-chip *ngIf="!item?.image" color="primary" mode="ios" outline="true">
+              <ion-label>No RECEIPT</ion-label>
+            </ion-chip>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</ion-content>
+

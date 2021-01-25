@@ -109,7 +109,7 @@ export class AuthService {
         this.deleteToken();
         localStorage.clear();
         this.token = '';
-        this.router.navigateByUrl('/login');
+        this.router.navigate(['/login'])
        }
   
     

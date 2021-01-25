@@ -25,6 +25,11 @@ export class AppComponent implements OnInit {
       icon: 'card'
     },
     {
+      title: 'Bonus',
+      url: '/tabs/bonus',
+      icon: 'star'
+    },
+    {
       title: 'Profile',
       url: '/tabs/profile',
       icon: 'person'

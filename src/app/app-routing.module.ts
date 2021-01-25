@@ -1,3 +1,7 @@
+import { AdminTabsPage } from './pages/admin-tabs/admin-tabs.page';
+import { AdminWithdrawalComponent } from './components/admin-withdrawal/admin-withdrawal.component';
+import { AdminTransComponent } from './components/admin-trans/admin-trans.component';
+import { BonusComponent } from './components/bonus/bonus.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { NoticeBoardComponent } from './components/notice-board/notice-board.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -62,6 +66,17 @@ const routes: Routes = [
       {path:'admin', component: AdminComponent, canActivate:[AuthGuard]},
       {path:'notice-board', component: NoticeBoardComponent, canActivate:[AuthGuard]},
       {path:'transactions', component: TransactionsComponent, canActivate:[AuthGuard]},
+      {path:'bonus', component: BonusComponent, canActivate:[AuthGuard]},
+
+     
+    ]
+  },
+  {
+    path: 'admin-tabs',
+    component: AdminTabsPage,
+    children:[
+      {path:'admin-trans', component: AdminTransComponent, canActivate:[AuthGuard]},
+      {path:'admin-withdrawal', component: AdminWithdrawalComponent, canActivate:[AuthGuard]},
     ]
   }
 ];

@@ -1,5 +1,13 @@
 
-
+ <ion-header>
+  <ion-toolbar color="light">
+    
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+ 
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="ion-padding">
 
@@ -26,66 +34,64 @@
                       <ion-button (click)="passwordAlert()"
                       color="danger">edit</ion-button>
                     </ion-item>
+
+                    <ion-label>Email</ion-label>
                     <ion-item color="light" >
-                      <ion-label>
-                        <!-- <h3>Torama User</h3> -->
                         <ion-icon name="mail"></ion-icon>
-                        <h6>{{userDetails?.email}} </h6>
-                      </ion-label>
+                        <h6 slot="end" class="font-weight-bold">{{userDetails?.email}} </h6>
                     </ion-item>
+
+                    <ion-label>Username</ion-label>
                     <ion-item color="light" >
-                      <ion-label>
                        <ion-icon name="person"></ion-icon>
-                        <h6> {{userDetails?.username}} </h6>
-                      </ion-label>
-
+                        <h6  slot="end" class="font-weight-bold"> {{userDetails?.username}} </h6>
                     </ion-item>
+
+                    <ion-label>Phone</ion-label>
                     <ion-item color="light" >
-                      <ion-label>
                        <ion-icon name="call"></ion-icon>
-                        <h6> {{userDetails?.phone}} </h6>
-                      </ion-label>
-
+                        <h6 slot="end" class="font-weight-bold"> {{userDetails?.phone}} </h6>
                     </ion-item>
 
+                    <ion-label>Role</ion-label>
                     <ion-item color="light" >
-                      <ion-label>
                        <ion-icon name="key"></ion-icon>
-                        <h6> {{userDetails?.role}} </h6>
-                      </ion-label>
-
-                    </ion-item>
-                    <ion-item color="light" >
-                      <ion-label>
-                       <ion-icon name="key"></ion-icon>
-                        <h6>id : 000{{userDetails?.user_id}} </h6>
-                      </ion-label>
-                    </ion-item>
-                    <ion-item color="light" >
-                      <ion-label>
-                       <ion-icon name="key"></ion-icon>
-                        <h6> {{userDetails?.role}} </h6>
-                      </ion-label>
+                        <h6 slot="end" class="font-weight-bold"> {{userDetails?.role}} </h6>
                     </ion-item>
 
+                    <ion-label>
+                      id :
+                    </ion-label>
                     <ion-item color="light" >
-                      <ion-label>
+                       <ion-icon name="key"></ion-icon>
+                        <h6 slot="end" class="font-weight-bold"> 000{{userDetails?.user_id}} </h6>
+                    </ion-item>
+
+                    <ion-label>Role:
+                    </ion-label>
+                    <ion-item color="light" >
+                       <ion-icon name="key"></ion-icon>
+                        <h6 slot="end" class="font-weight-bold"> {{userDetails?.role}} </h6>
+                    </ion-item>
+
+                    <ion-label> Bank : </ion-label>
+                    <ion-item color="light" >
                        <ion-icon name="business"></ion-icon>
-                        <h6> bank : {{userDetails?.bank}} </h6>
-                      </ion-label>
+                        <h6 slot="end" class="font-weight-bold">{{userDetails?.bank}} </h6>
                     </ion-item>
+                    <ion-label>Account no : </ion-label>
                     <ion-item color="light" >
-                      <ion-label>
                        <ion-icon name="card"></ion-icon>
-                        <h6>  account no : {{userDetails?.bank_account_no}} </h6>
-                      </ion-label>
+                        <h6 slot="end" class="font-weight-bold">  {{userDetails?.bank_account_number}} </h6>
                     </ion-item>
 
+
+
+                    <ion-label>account name :</ion-label>
                     <ion-item color="light" >
-                      <ion-label>
                        <ion-icon name="pencil"></ion-icon>
-                        <h6> account name : {{userDetails?.bank_account_name}} </h6>
-                      </ion-label>
+                        <h6 slot="end" class="font-weight-bold">  {{userDetails?.bank_account_name}} </h6>
+                     
                     </ion-item>
                     
                   </ng-container>

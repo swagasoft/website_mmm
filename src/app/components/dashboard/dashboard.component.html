@@ -45,57 +45,77 @@
        <ion-grid fixed>
          <ion-row>
            <ion-col size-sm="12" size-md="6" size-lg="6" class="justify-content-center">
-            <ion-item color="warning">
-              <ion-label>Enter Amount</ion-label>
-              <ion-input type="number" [(ngModel)]="amountModel.amount" ></ion-input>
-              <ion-icon slot="end" name="add"></ion-icon>
+             <div>Make your payment below</div>
+            <ion-item color="success">
+              <ion-label> ₦</ion-label>
+              <input style="color: black; font-weight: bold;" placeholder="Enter amount here" type="number" [(ngModel)]="amountModel.amount" >
+              <i class="fab fa-amazon-pay fa-2x pl-2"></i>
             </ion-item>
+
+            <div class="row justify-content-center">
+              <flutterwave-make-payment  *ngIf="amountModel?.amount > 99" 
+              public_key="FLWPUBK_TEST-32c34a10b25063883487eb99f916159a-X"
+              [amount]='amountModel.amount'
+              currency='NGN'
+              payment_options="card"
+              text="PAY NOW"
+              [customer]="customerDetails"
+              [customizations]="customizations"
+              [tx_ref]="reference"
+              (callback)="makePaymentCallback($event)"
+              (close)="closedPaymentModal()" >
+           
+          </flutterwave-make-payment>
+      
+             </div>
 
            </ion-col>
 
            <ion-col class="justify-content-center"  size-sm="12" size-md="6" size-lg="6">
-            <ion-button color="warning" (click)="uploadTransReceipt()" expand="block" fill="solid" >
-             <ion-chip color="primary" mode="ios" outline="true">
-               <ion-label>upload receipt</ion-label>
-               <ion-icon name="close-circle"></ion-icon>
-             </ion-chip>
-            </ion-button>
+            <div>Upload your receipt below</div>
+
+           <ion-item color="success" tappable class="ion-text-center" (click)="uploadTransReceipt()" >
+             UPLOAD NOW
+             <i slot="start" class="fas fa-upload pl-2"></i>
+           </ion-item>
            </ion-col>
          </ion-row>
        </ion-grid>
 
-       <div class="row justify-content-center">
-        <flutterwave-make-payment *ngIf="amountModel.amount > 99"
-        [public_key]="publicKey"
-        [amount]='amountModel.amount'
-        currency='NGN'
-        payment_options="card"
-        text="Pay Now"
-        [customer]="customerDetails"
-        [customizations]="customizations"
-        [tx_ref]="generateReference()"
-        (callback)="makePaymentCallback($event)"
-        (close)="closedPaymentModal()" >
-        <ion-chip color="primary" mode="ios" outline="true">
-          <ion-label>Pay Now</ion-label>
-          <ion-icon name="close-circle"></ion-icon>
-        </ion-chip>
-    </flutterwave-make-payment>`
 
-       </div>
+     
+
+
+         <ion-grid >
+           <ion-row>
+             <ion-col size="2"></ion-col>
+             <ion-col size="8"class="row justify-content-center" >
+              <div>
+                <ion-badge color="success" mode="ios"> <h4 class="text-white">{{timerHours +' H'}}</h4> </ion-badge>
+                <ion-badge color="warning" mode="ios"> <h4 class="text-dark">{{timerMinutes +' M'}}</h4> </ion-badge>
+                <ion-badge color="success" mode="ios"> <h4 class="text-white">{{timerSeconds +' S'}}</h4> </ion-badge>
+              </div>
+             </ion-col>
+             <ion-col size="2"></ion-col>
+           </ion-row>
+         </ion-grid>
+
+
+
+      
 
 
       
 
  
 
-        <div class="alert alert-warning fade collapse" role="alert" id="myAlert">
+        <!-- <div class="alert alert-warning fade collapse" role="alert" id="myAlert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">Close</span>
                 </button>
           <strong>Holy guacamole!</strong> It's free.. this is an example theme.
-        </div>
+        </div> -->
 
         <div class="row mb-3 ">
           <div class="col-md-6 col-sm-12 col-lg-6 ">
@@ -105,9 +125,9 @@
                   <i class="fa fa-user fa-5x"></i>
                 </div>
                 <ion-chip color="light" mode="ios" outline="true">
-                  <h6 class="text-uppercase">Investment</h6>
+                  <h6 class="text-uppercase text-center">Investment</h6>
                 </ion-chip>
-                <h1 class="display-3"> {{userDetails?.investment |currency:'₦' }} </h1>
+                <h3 class="display-4 font-weight-bold text-center"> {{userDetails?.investment |currency:'₦' }} </h3>
               </div>
             </div>
           </div>
@@ -118,9 +138,9 @@
                   <i class="fa fa-list fa-4x"></i>
                 </div>
                 <ion-chip color="light" mode="ios" outline="true">
-                  <h6 class="text-uppercase">Balance</h6>
+                  <h6 class="text-uppercase text-center">Balance</h6>
                 </ion-chip>
-                <h1 class="display-3">{{userDetails?.balance |currency:'₦'}} </h1>
+                <h3 class="display-4 font-weight-bold text-center">{{userDetails?.balance |currency:'₦'}} </h3>
               </div>
             </div>
           </div>
@@ -130,8 +150,8 @@
                 <div class="rotate">
                   <i class="fa fa-twitter fa-5x"></i>
                 </div>
-                <h6 class="text-uppercase">Accrued</h6>
-                <h1 class="display-3">₦0.00</h1>
+                <h6 class="text-uppercase text-center">Accrued</h6>
+                <h3 class="display-4 font-weight-bold text-center">{{userDetails?.accrued |currency:'₦'}}</h3>
               </div>
             </div>
           </div>
@@ -142,7 +162,7 @@
                   <i class="fa fa-share fa-5x"></i>
                 </div>
                 <h6 class="text-uppercase text-center">Withdrawal Request</h6>
-                <h1 class="display-3">{{userDetails?.withdrawal_req |currency:'₦'}} </h1>
+                <h3 class="display-4 font-weight-bold text-center">{{userDetails?.withdrawal_req |currency:'₦'}} </h3>
               </div>
             </div>
           </div>
@@ -160,14 +180,18 @@
                 <h3 class="p-2 text-warning">₦1500</h3>
               </ion-list>
             </ion-card>
-            <h6>₦1,000 will retunrn ₦1,500 in 26hours</h6>
-            <ion-button [disabled]="!userDetails?.one_k_investment" (click)="onClick()" expand="block" fill="solid" shape="round">
+            <h6>₦1,000 will retunrn ₦1,500 in 24hours</h6>
+            <ion-button [disabled]="!userDetails?.one_k_unlock" (click)="start_1000()" expand="block" fill="solid" shape="round">
               invest now 
+              <i *ngIf="!userDetails?.one_k_unlock" class="fas fa-lock p-2"></i>
+              <i class="fas fa-unlock-alt p-2"></i>
             </ion-button>
-           <ion-chip color="primary" mode="ios" outline="true">
-             <ion-label>Unlock Package</ion-label>
-           </ion-chip>
+          
+           <ion-button (click)="unlockOne_k_package()" size="small">
+            Unlock Package<i class="fas fa-unlock-alt p-2"></i>
+           </ion-button>
           </div>
+
 
           <div class="col-6  placeholder text-center">
             <ion-card color="light">
@@ -177,11 +201,11 @@
                 <h3 class="p-2 text-danger">₦7,500</h3>
               </ion-list>
             </ion-card>
-            <h6>₦5,000 will retunrn ₦7,500 in 24hours</h6>
+            <h6>₦5,000 will return ₦7,500 in 24hours</h6>
             <ion-button [disabled]="!userDetails?.five_k_investment" (click)="onClick()" expand="block" fill="solid" shape="round">
               invest now 
             </ion-button>
-           <ion-chip color="primary" mode="ios" outline="true">
+           <ion-chip color="primary" mode="ios" >
              <ion-label>Unlock Package</ion-label>
            </ion-chip>
           </div>
@@ -192,112 +216,12 @@
         <a id="features"></a>
         <hr>
         <p class="lead">
-          Are you ready for Bootstap 4? It's the 4th generation of this popular responsive framework. Bootstrap 4 will include some interesting new features such as 5 grid sizes (now including xl), cards, `em` sizing, CSS normalization (reboot) and larger font
-          sizes.
+         Unlock an investment and <Strong>Invest</Strong> the specific sum. Thereafter, you investment will start running and will accrued
+         50% by 24 hours
         </p>
 
         <hr>
-        <div class="row mb-3">
-          <div class="col-lg-3 col-md-4">
-            <div class="card">
-              <img class="card-img-top img-responsive" src="//placehold.it/740x180/bbb/fff?text=..." alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Button</a>
-              </div>
-            </div>
-
-            <div class="card card-inverse bg-inverse mt-3">
-              <div class="card-block">
-                <h3 class="card-title">Dark background</h3>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-outline-secondary">Outline</a>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-lg-9 col-md-8">
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>#</th>
-                    <th>Label</th>
-                    <th>Header</th>
-                    <th>Column</th>
-                    <th>Data</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1,001</td>
-                    <td>responsive</td>
-                    <td>bootstrap</td>
-                    <td>cards</td>
-                    <td>grid</td>
-                  </tr>
-                  <tr>
-                    <td>1,002</td>
-                    <td>rwd</td>
-                    <td>web designers</td>
-                    <td>theme</td>
-                    <td>responsive</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>free</td>
-                    <td>open-source</td>
-                    <td>download</td>
-                    <td>template</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>frontend</td>
-                    <td>developer</td>
-                    <td>coding</td>
-                    <td>card panel</td>
-                  </tr>
-                  <tr>
-                    <td>1,004</td>
-                    <td>migration</td>
-                    <td>bootstrap 4</td>
-                    <td>mobile-first</td>
-                    <td>design</td>
-                  </tr>
-                  <tr>
-                    <td>1,005</td>
-                    <td>navbar</td>
-                    <td>sticky</td>
-                    <td>jumbtron</td>
-                    <td>header</td>
-                  </tr>
-                  <tr>
-                    <td>1,006</td>
-                    <td>collapse</td>
-                    <td>affix</td>
-                    <td>submenu</td>
-                    <td>footer</td>
-                  </tr>
-                  <tr>
-                    <td>1,007</td>
-                    <td>layout</td>
-                    <td>examples</td>
-                    <td>themes</td>
-                    <td>grid</td>
-                  </tr>
-                  <tr>
-                    <td>1,008</td>
-                    <td>migration</td>
-                    <td>bootstrap 4</td>
-                    <td>flexbox</td>
-                    <td>design</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+       
         <!--/row-->
 
  

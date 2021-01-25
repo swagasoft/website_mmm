@@ -6,9 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="titlepage">
-                    <h2>Sign up Registration</h2>
-                </div>
+              <div class="titlepage">
+                <h4>50% Profit in 24 hours</h4>
+            </div>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
 
   <!-- contact -->
   <div class="contact">
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="col-md-12">
 
@@ -32,11 +32,12 @@
 
              
 
-                <div class=" text-center titlepage">
-                  <h2>Pocket Money</h2>
-              </div>
+              <div class=" text-center titlepage">
+                <img src="assets/images/logo.png" alt="">
+                <h2> Registration</h2>
+            </div>
 
-                <form class="main_form" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
+                <form class="" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
                   <div class="row ion-justify-content-center">
                       
                    
@@ -116,6 +117,8 @@
                           <input class="form-control" placeholder="Bank account number" type="number" formControlName="bank_account_number"  >
                           <ion-icon slot="start" name="list"></ion-icon>
                         </ion-item>
+
+                        <div>Already have an account? <strong [routerLink]="['/login']" >Login</strong> </div>
                        
                         <div class="ion-text-center m-3">
                           <ion-button  (click)="submitForm()" [disabled]="!signUpForm.valid || signUpForm.get('password').value !== signUpForm.get('password_conf').value"  color="dark">Submit</ion-button>
