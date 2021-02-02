@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
   {
@@ -75,8 +76,8 @@ const routes: Routes = [
     path: 'admin-tabs',
     component: AdminTabsPage,
     children:[
-      {path:'admin-trans', component: AdminTransComponent, canActivate:[AuthGuard]},
-      {path:'admin-withdrawal', component: AdminWithdrawalComponent, canActivate:[AuthGuard]},
+      {path:'admin-trans', component: AdminTransComponent, canActivate:[AdminGuard,]},
+      {path:'admin-withdrawal', component: AdminWithdrawalComponent, canActivate:[AdminGuard]},
     ]
   }
 ];

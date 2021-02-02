@@ -50,16 +50,6 @@ timerInterval : any;
   }
 
 
-  ionViewDidLeave(){
-   console.log('leaving...')
-  //  clearInterval(this.timerInterval);
-  }
-
-
-  ionViewWillLeave(){
-   console.log('will leave me')
-  }
-
 
 
 
@@ -141,14 +131,12 @@ makePaymentCallback(response: any): void {
   console.log("Pay", response);
   this.userService.submitTransaction(response).subscribe( saved => {
     console.log(saved);
-    this.userDetails = saved['newData']
-    console.log('ORG',this.userDetails)
-    // this.userService.setUserProfile(this.userDetails);
-    // this.userService.getUserProfile().subscribe(user => {
-    //   this.userDetails - user;
-    // });
+    this.userDetails = saved['newData'];
+    
+   
+ 
   });
-  this.flutterwave.closePaymentModal(5)
+  // this.flutterwave.closePaymentModal()
 }
 
 
@@ -157,6 +145,10 @@ closedPaymentModal(): void {
   this.generateReference();
   console.log('payment is closed');
   this.amountModel.amount = null;
+ setTimeout(()=> {
+  this.getUserDetails();
+ }, 2000);
+ 
 }
 
 

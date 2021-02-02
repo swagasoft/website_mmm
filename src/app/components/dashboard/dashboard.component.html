@@ -53,7 +53,7 @@
             </ion-item>
 
             <div class="row justify-content-center">
-              <flutterwave-make-payment  *ngIf="amountModel?.amount > 99" 
+              <flutterwave-make-payment  style="background-color: green;" *ngIf="amountModel?.amount > 99" 
               public_key="FLWPUBK_TEST-32c34a10b25063883487eb99f916159a-X"
               [amount]='amountModel.amount'
               currency='NGN'
@@ -181,7 +181,7 @@
               </ion-list>
             </ion-card>
             <h6>₦1,000 will retunrn ₦1,500 in 24hours</h6>
-            <ion-button [disabled]="!userDetails?.one_k_unlock" (click)="start_1000()" expand="block" fill="solid" shape="round">
+            <ion-button [disabled]="!userDetails?.one_k_unlock || userDetails?.running_investment" (click)="start_1000()" expand="block" fill="solid" shape="round">
               invest now 
               <i *ngIf="!userDetails?.one_k_unlock" class="fas fa-lock p-2"></i>
               <i class="fas fa-unlock-alt p-2"></i>

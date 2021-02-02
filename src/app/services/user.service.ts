@@ -54,6 +54,14 @@ export class UserService {
     return this.userProfile;
   }
 
+  startWithdrawal(trans){
+    return this.http.post(environment.apiBaseUrl + '/start-withdrawal', trans);
+  }
+
+  getMyWithdrawal(){
+    return this.http.get(environment.apiBaseUrl + '/get-my-withdrawal');
+  }
+
 
 }
  

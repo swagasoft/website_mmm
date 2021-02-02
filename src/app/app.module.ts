@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth/auth.guard';
 import { PreviewComponent } from './components/preview/preview.component';
 import { AdminWithdrawalComponent } from './components/admin-withdrawal/admin-withdrawal.component';
 import { AdminTransComponent } from './components/admin-trans/admin-trans.component';
@@ -47,6 +48,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { FlutterwaveModule } from 'flutterwave-angular-v3';
 import { AdminTabsPage } from './pages/admin-tabs/admin-tabs.page';
+import { AdminGuard } from './auth/admin.guard';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
@@ -89,6 +91,8 @@ ProductPage],
     AuthService,
     LogicService,
     ToastrService,
+    AuthGuard,
+    AdminGuard,
   
     FireService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
