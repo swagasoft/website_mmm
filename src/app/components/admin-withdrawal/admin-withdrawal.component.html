@@ -8,8 +8,93 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-segment (ionChange)="segmentChanged($event)" color="dark" value="withdrawal">
+  <ion-segment-button value="withdrawal">
+    <ion-label>Withdrawal Request</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="payout">
+    <ion-label>Payout</ion-label>
+  </ion-segment-button>
+</ion-segment>
 
-  <h1>admin withdrawal</h1>
+<ion-content *ngIf="segment =='withdrawal'">
+
+
+
+
+
+  <h3 class="text-center font-weight-bold">Withdrawal Request List</h3>
+
+  <table class="table table-striped table-responsive text-center">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Amount</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Paid</th>
+        <th>Date</th>
+        <th>Pay date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of withdrawalList; index as i">
+      <tr>
+        <td>{{i + 1}} </td>
+        <td>{{item?.amount |currency:"₦"}} </td>
+        <td>{{item?.email}} </td>
+        <td>{{item?.username}} </td>
+        <td>{{item?.paid}} </td>
+        <td>{{item?.date | date:'dd/MM/yyyy'}} </td>
+        <td>{{item?.pay_date | date:'dd/MM/yyyy'}} </td>
+        <td> <ion-button (click)="payoutConfirm(item)" color="success">
+          payout
+        </ion-button> </td>
+      </tr>
+   
+    </tbody>
+  </table>
+
+
+
+</ion-content>
+
+
+<ion-content *ngIf="segment=='payout'">
+
+
+  <h3 class="text-center font-weight-bold">Payout List</h3>
+
+  <table class="table table-striped table-responsive text-center">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Amount</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Paid</th>
+        <th>Date</th>
+        <th>Pay date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of payoutList; index as i">
+      <tr>
+        <td>{{i + 1}} </td>
+        <td>{{item?.amount |currency:"₦"}} </td>
+        <td>{{item?.email}} </td>
+        <td>{{item?.username}} </td>
+        <td *ngIf="item.paid">{{item?.paid}} </td>
+        <td *ngIf="item.paid"> <p class="font-weight-bold text-success">paid</p> </td>
+        <td *ngIf="!item.paid"> <p class="font-weight-bold text-info">awaiting</p> </td>
+        <td>{{item?.date | date:'dd/MM/yyyy'}} </td>
+        <td>{{item?.pay_date | date:'dd/MM/yyyy'}} </td>
+        <td>
+            </td>
+      </tr>
+   
+    </tbody>
+  </table>
+
 
 </ion-content>

@@ -62,6 +62,16 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl + '/get-my-withdrawal');
   }
 
+  getAdminWithdrawal(){
+    return this.http.get(environment.apiBaseUrl + '/get-admin-withdrawal');
+  }
+  getAdminPayout(){
+    return this.http.get(environment.apiBaseUrl + '/get-admin-payout');
+  }
+
+  settleWithdrawal(trans){
+    return this.http.put(environment.apiBaseUrl + '/settle-withdrawal', trans);
+  }
 
 }
  
