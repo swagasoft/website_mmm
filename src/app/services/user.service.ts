@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -10,7 +11,7 @@ export class UserService {
 
   private userProfile = new BehaviorSubject<any>(null);
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth : AuthService) { }
 
 
   getUserDetails() {
@@ -32,8 +33,29 @@ export class UserService {
   unlock_1000_process(info){
     return this.http.put(environment.apiBaseUrl  + '/unlock-1000-process', info);
   }
+
+  unlock5000Investment(info){
+    return this.http.put(environment.apiBaseUrl  + '/unlock-5000-process', info);
+  }
+
+
+  unlock10000Investment(info){
+    return this.http.put(environment.apiBaseUrl  + '/unlock-10000-process', info);
+  }
+
+
   start1000Investment(data){
     return this.http.put(environment.apiBaseUrl  + '/start-1000-process', data);
+  }
+
+
+  start5000Investment(data){
+    return this.http.put(environment.apiBaseUrl  + '/start-5000-process', data);
+  }
+
+
+  start10000Investment(data){
+    return this.http.put(environment.apiBaseUrl  + '/start-10000-process', data);
   }
 
   completeInvestment(investment){
@@ -71,6 +93,15 @@ export class UserService {
 
   settleWithdrawal(trans){
     return this.http.put(environment.apiBaseUrl + '/settle-withdrawal', trans);
+  }
+
+  getUserDownLine(){
+   let  body ={ username : this.auth.getUsername()}
+    return this.http.put(environment.apiBaseUrl + '/get-user-down-line', body);
+  }
+
+  validatePassword(password){
+    return this.http.put(environment.apiBaseUrl +'/validate-password', password);
   }
 
 }

@@ -1,16 +1,17 @@
-import { Router } from '@angular/router';
-import { LogicService } from './../../services/logic.service';
-import { AuthService } from './../../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { LogicService } from 'src/app/services/logic.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.page.html',
-  styleUrls: ['./signup.page.scss'],
+  selector: 'app-sign-up-referral',
+  templateUrl: './sign-up-referral.page.html',
+  styleUrls: ['./sign-up-referral.page.scss'],
 })
-export class SignupPage implements OnInit {
+export class SignUpReferralPage implements OnInit {
+
   signUpForm: FormGroup;
   referral_username: string;
 
@@ -43,19 +44,14 @@ export class SignupPage implements OnInit {
         { type: 'required', message: 'Bank account number is required.' }
     ]
 };
-  activateRoute: any;
   loading: boolean;
+
   constructor(private formBuilder: FormBuilder, private authService : AuthService, private logicService : LogicService,
-    private router : Router, private alertController: AlertController) { }
+    private router : Router, private activateRoute: ActivatedRoute, private alertController: AlertController) { }
 
   ngOnInit() {
 
-  //   this.activateRoute.queryParams.subscribe(params => {
-  //     const  REFERAL = this.activateRoute.snapshot.params['username'];
-  //     let smallLetterRef =  REFERAL.toLowerCase();
-  //     this.referral_username = smallLetterRef;
-  //     console.log(this.referral_username);
-  //  });
+
 
   
 
@@ -92,17 +88,31 @@ export class SignupPage implements OnInit {
   }
 
 
+
+
+      this.activateRoute.queryParams.subscribe(params => {
+      const  REFERRAL = this.activateRoute.snapshot.params['username'];
+      let smallLetterRef =  REFERRAL.toLowerCase();
+      this.referral_username = smallLetterRef;
+      console.log('referral',this.referral_username);
+      this.signUpForm.get('referral').setValue(this.referral_username);
+   });
+
+  
   }
+
+
+
 
 
   submitForm(){
     this.loading = true;
     console.log(this.signUpForm.value)
     this.authService.createUser(this.signUpForm.value).subscribe( res => {
+      this.loading = false;
       console.log(res)
       this.logicService.showSuccess(res['message']);
       this.signUpForm.reset();
-      this.loading = false;
       this.presentRegSuccess();
     },
     err => {
@@ -110,7 +120,7 @@ export class SignupPage implements OnInit {
       console.log(err);
       this.loading = false;
       
-    });
+    })
   }
 
   async presentRegSuccess() {
@@ -130,4 +140,5 @@ export class SignupPage implements OnInit {
   
     await alert.present();
   }
+
 }

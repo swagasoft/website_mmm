@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   
  
 };
+  loading: boolean;
   constructor(private formBuilder: FormBuilder, private authService : AuthService, private logicService : LogicService,
     private router : Router) { }
 
@@ -52,15 +53,19 @@ export class LoginComponent implements OnInit {
 
 
   submitForm(){
+    this.loading = true;
     console.log(this.signUpForm.value)
     this.authService.login(this.signUpForm.value).subscribe( res => {
       console.log(res)
       console.log(res['token'])
       this.authService.setToken(res['token']);
       this.router.navigateByUrl('/tabs/dashboard')
+      this.loading = false;
+      
     },
     err => {
       this.logicService.showError(err.error.message);
+      this.loading = false;
       console.log(err);
       
     })

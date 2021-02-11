@@ -14,14 +14,14 @@
     <ion-row>
       <ion-col size="6">
 
-        <ion-card class="p-3" color="danger">
+        <ion-card class="p-3" color="light">
           <p>Balance</p>
             <h5 class="text-center">{{userDetails?.balance |currency:'₦'}} </h5>
         </ion-card>
 
       </ion-col>
       <ion-col size="6">
-        <ion-card class="p-3" color="warning">
+        <ion-card class="p-3" color="light">
           <p>Withdrawal</p>
           <h5 class="text-center">{{userDetails?.withdrawal_req  |currency:'₦'}} </h5>
         
@@ -30,9 +30,9 @@
     </ion-row>
 
     <ion-row>
-      <ion-col size-sm="0" size-md="2" size-lg="3"></ion-col>
+      <ion-col size-sm="0" size-md="2" size-lg="1"></ion-col>
 
-      <ion-col size-sm="12" size-md="8" size-lg="6">
+      <ion-col size-sm="12" size-md="8" size-lg="10">
 
         <div>Request Withdrawal</div>
       <ion-item color="success">
@@ -43,7 +43,7 @@
       
 
       </ion-col>
-      <ion-col size-sm="0" size-md="2" size-lg="3">   
+      <ion-col size-sm="0" size-md="2" size-lg="1">   
       </ion-col>
 
     </ion-row>
@@ -58,42 +58,48 @@
 
   <ion-content class="mt-5" >
 
-    <h6 class="text-left p-4 font-weight-bold"> Withdrawal List</h6>
-
-  
-        <table class="table table-striped table-responsive text-center">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Amount</th>
-              <th>Email</th>
-              <th>Username</th>
-              <th>Paid</th>
-              <th>Date</th>
-              <th>Pay date</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let item of myWithdrawal; index as i">
-            <tr>
-              <td>{{i + 1}} </td>
-              <td>{{item?.amount |currency:"₦"}} </td>
-              <td>{{item?.email}} </td>
-              <td>{{item?.username}} </td>
-              <td *ngIf="item.paid"> <p class="font-weight-bold text-success">paid</p> </td>
-              <td *ngIf="!item.paid"> <p class="font-weight-bold text-info">awaiting</p> </td>
-              <td>{{item?.admin}} </td>
-              <td>{{item?.date | date:'dd/MM/yyyy'}} </td>
-              <td>{{item?.pay_date | date:'dd/MM/yyyy'}} </td>
-            </tr>
-         
-          </tbody>
-        </table>
    
+    <ion-grid >
+      <ion-row>
+        <ion-col size-sm="0" size-md="2" size-lg="1"></ion-col>
+        <ion-col size-sm="12" size-md="8" size-lg="10">
+
+          <h6 class="text-left p-4 font-weight-bold"> Withdrawal List</h6>  
+          <table class="table table-striped table-responsive text-center">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Amount</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Paid</th>
+                <th>Date</th>
+                <th>Pay date</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of myWithdrawal; index as i">
+              <tr>
+                <td>{{i + 1}} </td>
+                <td>{{item?.amount |currency:"₦"}} </td>
+                <td>{{item?.email}} </td>
+                <td>{{item?.username}} </td>
+                <td *ngIf="item.paid"> <p class="font-weight-bold text-success">PAID</p> </td>
+                <td *ngIf="!item.paid"> <p class="font-weight-bold text-danger">AWAITING</p> </td>
+                <td>{{item?.date | date:'dd/MM/yyyy'}} </td>
+                <td>{{item?.pay_date | date:'dd/MM/yyyy'}} </td>
+              </tr>
+           
+            </tbody>
+          </table>
+     
+
+        </ion-col>
+        <ion-col size-sm="0" size-md="2" size-lg="1"></ion-col>
+      </ion-row>
+    </ion-grid>
 
   </ion-content>
   
-  <ion-content>
-     content 2
-  </ion-content>
+
   
 </ion-content>

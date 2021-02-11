@@ -68,32 +68,32 @@ export class ProfileComponent implements OnInit {
     }
   
   
-  // async passwordAlert() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Alert',
-  //     subHeader: 'enter your password',
-  //     inputs:[{name:'password', type:'password', placeholder:'my password'}],
-  //     buttons: [{
-  //       text:'confirm',
-  //       handler: (password)=> {
-  //         console.log(password)
-  //         this.userService.validatepassword(password).subscribe(
-  //           res => {
-  //             this.loading = false;
-  //             this.editProfile();
-  //           },
-  //           err => {
-  //             this.loading = false;
-  //             this.userService.generalToast("error", err.error.msg, 2000);
-  //           }
-  //         );
-  //       }
-  //     }],
+  async passwordAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'enter your password',
+      inputs:[{name:'password', type:'password', placeholder:'my password'}],
+      buttons: [{
+        text:'confirm',
+        handler: (password)=> {
+          console.log(password)
+          this.userService.validatePassword(password).subscribe(
+            res => {
+              this.loading = false;
+              this.editProfile();
+            },
+            err => {
+              this.loading = false;
+              // this.logi.generalToast("error", err.error.msg, 2000);
+            }
+          );
+        }
+      }],
       
-  //   });
+    });
   
-  //   await alert.present();
-  // }
+    await alert.present();
+  }
   
 
 }

@@ -1,3 +1,4 @@
+import { SignUpReferralPage } from './pages/sign-up-referral/sign-up-referral.page';
 import { AuthGuard } from './auth/auth.guard';
 import { PreviewComponent } from './components/preview/preview.component';
 import { AdminWithdrawalComponent } from './components/admin-withdrawal/admin-withdrawal.component';
@@ -54,6 +55,7 @@ import { AdminGuard } from './auth/admin.guard';
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
   TestinoniesPage, SignupPage, ContactPage,TabsPage, DashboardComponent,ProfileComponent,
   DownlineComponent,
+  SignUpReferralPage,
   WithdrawalComponent,
   AccountComponent,
   EditProfileComponent,

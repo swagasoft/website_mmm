@@ -35,8 +35,10 @@
                   <div >
 
                 <form class="" [formGroup]="signUpForm" (ngSubmit)="submitForm()">
+                         
+                          <label for="">Email *</label>
                           <div *ngFor="let validation of validationMessages.email">
-                            <small class="text-danger"  *ngIf="signUpForm.get('email').hasError(validation.type) && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">  {{ validation.message }} </small>
+                            <small class="text-danger text-center"  *ngIf="signUpForm.get('email').hasError(validation.type) && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">  {{ validation.message }} </small>
                           </div>
                           <ion-item color="light">
                             <input class="form-control" placeholder="Email" type="email" formControlName="email"  >
@@ -45,21 +47,26 @@
   
                         
   
+                         
+                          <label for="">Password *</label>
                           <div *ngFor="let validation of validationMessages.password">
-                            <small class="text-danger"  *ngIf="signUpForm.get('password').hasError(validation.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">  {{ validation.message }} </small>
+                            <small class="text-danger text-center"  *ngIf="signUpForm.get('password').hasError(validation.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">  {{ validation.message }} </small>
                           </div>
                           <ion-item color="light">
                             <input class="form-control" #password placeholder="Password " type="password" formControlName="password"  >
                             <ion-icon slot="start" name="key"></ion-icon>
                             <!-- <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
                             name="eye" slot="end"></ion-icon>  -->
+                            <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+                          name="eye" slot="end"></ion-icon> 
                           </ion-item>
 
                           <div>Don't have account? <strong [routerLink]="['/signup']" >Sign Up</strong> </div>
   
                      
                           <div class="ion-text-center m-3">
-                            <ion-button  (click)="submitForm()" [disabled]="!signUpForm.valid "  color="dark">Submit</ion-button>
+                            <ion-button [disabled]="loading" (click)="submitForm()" [disabled]="!signUpForm.valid " 
+                             color="dark"><div *ngIf="!loading">Submit</div> <ion-spinner *ngIf="loading" name="circular"></ion-spinner> </ion-button>
                         </div>
                 </form>
               </div>    

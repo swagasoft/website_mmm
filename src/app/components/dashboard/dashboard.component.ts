@@ -142,6 +142,16 @@ makePaymentCallback(response: any): void {
 }
 
 
+copyInputMessage(inputElement){
+  inputElement.select();
+  document.execCommand('copy');
+  inputElement.setSelectionRange(0, 0);
+  this.logicService.showInfo("text copped")
+}
+
+
+
+
 
 closedPaymentModal(): void {
   this.generateReference();
@@ -165,7 +175,7 @@ generateReference() {
 
 async unlockOne_k_package() {
   const alert = await this.alertController.create({
-    header: 'Unlock ₦1000 Investment',
+    header: 'Unlocking ₦1000 Investment will cost you a fee of ₦100, make sure you have enough balance for this process. ',
     message: 'NB <strong>₦100 will be deducted from your balance.</strong>',
     buttons: [
       {
@@ -190,6 +200,109 @@ async unlockOne_k_package() {
 }
 
 
+
+async unlock5000Package() {
+  const alert = await this.alertController.create({
+    header: 'Unlocking ₦5000 Investment will cost you a fee of ₦500, make sure you have enough balance for this process. ',
+    message: ' <strong>Do you really want to continue? </strong>',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'dark',
+        handler: () => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Confirm',
+        cssClass: 'dark',
+        handler: () => {
+          console.log('Confirm Okay');
+          this.Unlock5000Invest();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+
+async unlock10000Package() {
+  const alert = await this.alertController.create({
+    header: 'Unlocking ₦10000 Investment will cost you a fee of ₦1000, make sure you have enough balance for this process. ',
+    message: ' <strong>Do you really want to continue? </strong>',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'dark',
+        handler: () => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Confirm',
+        cssClass: 'dark',
+        handler: () => {
+          console.log('Confirm Okay');
+          this.Unlock10000Invest();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+
+Unlock10000Invest(){
+  const info = {process : true, amount : 1000}
+if (this.userDetails.balance < 1000) {
+  this.logicService.showWarning('balance too low for this transaction!')
+} else {
+  this.logicService.showSpinner();
+  this.userService.unlock10000Investment(info).subscribe(res => {
+    console.log(res)
+    this.userDetails = res['user'];
+    this.userService.setUserProfile(this.userDetails);
+    this.logicService.showSuccess(res['msg']);
+    this.logicService.dismissSpinner();
+  }, err => {
+console.log(err)
+this.logicService.dismissSpinner();
+this.logicService.showError(err.error.msg);
+  });
+
+}
+}
+
+
+
+
+Unlock5000Invest(){
+  const info = {process : true, amount : 500}
+if (this.userDetails.balance < 500) {
+  this.logicService.showWarning('balance too low for this transaction!')
+} else {
+  this.logicService.showSpinner();
+  this.userService.unlock5000Investment(info).subscribe(res => {
+    console.log(res)
+    this.userDetails = res['user'];
+    this.userService.setUserProfile(this.userDetails);
+    this.logicService.showSuccess(res['msg']);
+    this.logicService.dismissSpinner();
+  }, err => {
+console.log(err)
+this.logicService.dismissSpinner();
+this.logicService.showError(err.error.msg);
+  });
+
+}
+}
+
+
 Unlock_1000_process(){
   const info = {process : true, amount : 100}
 if (this.userDetails.balance < 100) {
@@ -205,18 +318,20 @@ if (this.userDetails.balance < 100) {
   }, err => {
 console.log(err)
 this.logicService.dismissSpinner();
-this.logicService.showError(err.msg);
+this.logicService.showError(err.error.msg);
   });
 
 }
 }
 
 
+
+
 async start_1000() {
   const alert = await this.alertController.create({
     header: 'Start 1000 Investment',
     subHeader : "Please confirm the following",
-    message: ` <strong class="text-success">Your Investment will last 24 hours and
+    message: ` <strong class="text-dark">Your Investment will last 24 hours and
     ₦1000 will be invested from available balance </strong> <br>
     `,
     buttons: [
@@ -252,6 +367,7 @@ if (this.userDetails.balance < 1000) {
     console.log(res);
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
+    this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
 
 
     this.calculateDiff(this.userDetails?.investment_timer)
@@ -262,6 +378,120 @@ if (this.userDetails.balance < 1000) {
   });
 }
 }
+
+
+async start5000() {
+  const alert = await this.alertController.create({
+    header: 'Start 5000 Investment',
+    subHeader : "Please confirm the following",
+    message: ` <strong class="text-dark">Your Investment will last 24 hours and
+    ₦1000 will be invested from available balance </strong> <br>
+    `,
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Yes',
+        handler: () => {
+          console.log('Confirm Okay');
+          this.start5000Investment();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+start5000Investment(){
+  clearInterval(this.timerInterval);
+if (this.userDetails.balance < 10000) {
+  this.logicService.showError('Insufficient balance of ' + '₦'+this.userDetails?.balance);
+} else {
+  const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
+  this.logicService.showSpinner();
+  this.userService.start5000Investment(dateProps).subscribe(res => {
+    console.log(res);
+    this.userDetails = res['user'];
+    this.userService.setUserProfile(this.userDetails);
+    this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
+
+
+    this.calculateDiff(this.userDetails?.investment_timer)
+    this.logicService.dismissSpinner();
+  }, err => {
+    console.log(err);
+    this.logicService.dismissSpinner();
+  });
+}
+}
+
+
+
+async start10000() {
+  const alert = await this.alertController.create({
+    header: 'Start 10000 Investment',
+    subHeader : "Please confirm the following",
+    message: ` <strong class="text-dark">Your Investment will last 24 hours and
+    ₦1000 will be invested from available balance </strong> <br>
+    `,
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Yes',
+        handler: () => {
+          console.log('Confirm Okay');
+          this.start10000Investment();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
+
+
+
+
+
+
+start10000Investment(){
+  clearInterval(this.timerInterval);
+if (this.userDetails.balance < 10000) {
+  this.logicService.showError('Insufficient balance of ' + '₦'+this.userDetails?.balance);
+} else {
+  const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
+  this.logicService.showSpinner();
+  this.userService.start10000Investment(dateProps).subscribe(res => {
+    console.log(res);
+    this.userDetails = res['user'];
+    this.userService.setUserProfile(this.userDetails);
+    this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
+
+
+    this.calculateDiff(this.userDetails?.investment_timer)
+    this.logicService.dismissSpinner();
+  }, err => {
+    console.log(err);
+    this.logicService.dismissSpinner();
+  });
+}
+}
+
 
 
 
@@ -309,12 +539,14 @@ this.timerInterval = setInterval(()=> {
 completeInvestment(user){
   this.logicService.showSpinner();
   this.completedInvestModel.amount  = user.investment;
-  this.completedInvestModel.profit  = user.investment / 2;
+  this.completedInvestModel.profit  = 20/100 * user.investment;
   this.completedInvestModel.date =  new Date().getTime()
 
   this.userService.completeInvestment(this.completedInvestModel).subscribe(result => {
     console.log(result);this.logicService.showSuccess(result['msg'])
     this.logicService.dismissSpinner();
+
+    // setTimeout()
 
   }, err => {
     this.logicService.dismissSpinner();

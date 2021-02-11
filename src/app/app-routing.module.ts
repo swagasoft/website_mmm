@@ -20,7 +20,7 @@ import { AdminGuard } from './auth/admin.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tabs/dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -51,9 +51,14 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./pages/contact/contact.module').then( m => m.ContactPageModule)
   },
+ 
   {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'sign-up/:username',
+    loadChildren: () => import('./pages/sign-up-referral/sign-up-referral.module').then( m => m.SignUpReferralPageModule)
   },
   {
     path: 'tabs',
@@ -79,7 +84,9 @@ const routes: Routes = [
       {path:'admin-trans', component: AdminTransComponent, canActivate:[AdminGuard,]},
       {path:'admin-withdrawal', component: AdminWithdrawalComponent, canActivate:[AdminGuard]},
     ]
-  }
+  },
+
+ 
 ];
 
 @NgModule({

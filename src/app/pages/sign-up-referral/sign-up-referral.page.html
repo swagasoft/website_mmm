@@ -95,11 +95,12 @@
                           <ion-icon  (click)="password_conf.type=password_conf.type=='password'?'text':'password'" 
                           name="eye" slot="end"></ion-icon> 
                         </ion-item>
-<!-- 
+
+                        <label for="">Referral</label>
                         <ion-item color="light">
-                          <input class="form-control" placeholder="Referral" type="text" formControlName="referral"  >
+                          <input readonly class="form-control" placeholder="Referral" type="text" formControlName="referral"  >
                           <ion-icon slot="start" name="person"></ion-icon>
-                        </ion-item> -->
+                        </ion-item>
 
                         <div *ngFor="let validation of validationMessages.bank">
                           <small class="text-danger"  *ngIf="signUpForm.get('bank').hasError(validation.type) && (signUpForm.get('bank').dirty || signUpForm.get('bank').touched)">  {{ validation.message }} </small>
@@ -128,7 +129,6 @@
                         <label for="">Bank Account Number</label>
                         <ion-item color="light">
                           <input class="form-control" placeholder="Bank account number" type="number" formControlName="bank_account_number"  >
-                          
                           <ion-icon slot="start" name="keypad-outline"></ion-icon>
                         </ion-item>
 

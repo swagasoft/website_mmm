@@ -11,13 +11,16 @@
 
 <ion-content class="ion-padding">
 
-  <ion-chip class="text-center" *ngIf="!userDetails?.bank || !userDetails?.bank_account_name || !userDetails?.bank_account_number"
+  <div class="ion-text-center">
+    <ion-chip  *ngIf="!userDetails?.bank || !userDetails?.bank_account_name || !userDetails?.bank_account_number"
    color="danger" mode="ios" >
-    <ion-label>Your bank details need to be updated, click edit tp update</ion-label>
+    <ion-label>Your bank details need to be updated, click edit to update</ion-label>
   </ion-chip>
+  </div>
 
   <ion-grid fixed >
                 <!--  Show users -->
+                <!-- <ion-col size-sm="0" size-md="2" size-lg="1">  -->
              <ion-row>
                <ion-col >
                 <ion-list >
