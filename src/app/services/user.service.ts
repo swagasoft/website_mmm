@@ -99,9 +99,34 @@ export class UserService {
    let  body ={ username : this.auth.getUsername()}
     return this.http.put(environment.apiBaseUrl + '/get-user-down-line', body);
   }
+  getUserBonus(){
+   let  body ={ username : this.auth.getUsername()}
+    return this.http.put(environment.apiBaseUrl + '/get-user-bonus', body);
+  }
 
   validatePassword(password){
     return this.http.put(environment.apiBaseUrl +'/validate-password', password);
+  }
+
+
+  confirmManualTransaction(trans){
+    return this.http.put(environment.apiBaseUrl + '/confirm-manual-trans', trans);
+  }
+
+  getAllRunningInvestment(){
+    return this.http.get(environment.apiBaseUrl + '/get-all-running-invest')
+  }
+
+  searchByUsername(user){
+    return this.http.put(environment.apiBaseUrl + '/search-user', user);
+  }
+
+  updateRole(user){
+    return this.http.put(environment.apiBaseUrl + '/update-user-role', user);
+  }
+ 
+  submitContactForm(form){
+    return this.http.put(environment.apiBaseUrl +'/submit-contact-form', form);
   }
 
 }

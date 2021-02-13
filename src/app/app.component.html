@@ -1,56 +1,5 @@
 <ion-app>
-  <!-- <ion-split-pane when="md"  contentId="main-content"> -->
-    <ion-menu  *ngIf="authService.isLoggedIn()"  contentId="main-content" type="overlay">
-      <ion-header>
-        <ion-toolbar color="light">
-            
-           <ion-menu-toggle>
-             <ion-item color="medium" class="ion-padding"> 
-              <small class="p-5 pt-2 pl-1 text-uppercase" [routerLink]="['/tabs/setting']"
-              >user  </small> <br>
-              <small class="p-5 pl-1 text-uppercase" [routerLink]="['/setting']"
-              >MY ROLE </small> <br>
-         
-             </ion-item>
-           </ion-menu-toggle>
-    
-                <ion-row class="ml-5">
-                  <ion-col class="ml-5">
-                    <div #bal class="rubberBand animated infinite" >
-                      <ion-icon name="swap" size="large" ></ion-icon>
-                    </div>
-                  </ion-col>
-                </ion-row>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content > 
-        <ion-list color="light">
-          <ion-list-header color="light" >MANAGEMENT</ion-list-header>
-          <ion-menu-toggle  auto-hide="false" *ngFor="let p of appPages">
-            <ion-item color="light" [routerDirection]="'root'" [routerLink]="[p.url]" routerLinkActive="router-link-active">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-       
-        </ion-list>
-    
-        <ion-list color="light">
-          <ion-list-header color="light">DIRECTOR</ion-list-header>
-           <ion-menu-toggle autoHide="false">
-            <ion-item  color="light"   [routerLink]="['/admin-tabs/admin-trans']" routerLinkActive="router-link-active">
-              <ion-icon name="list"></ion-icon>
-              <ion-label  class="ml-4">ADMIN</ion-label>
-            </ion-item>
-           </ion-menu-toggle>
-          
-         
-        </ion-list>
-     
-      </ion-content>
-    </ion-menu>
+
       <ion-router-outlet  id="main-content"></ion-router-outlet> 
       <!-- </ion-split-pane> -->
     

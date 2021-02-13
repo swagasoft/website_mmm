@@ -1,3 +1,5 @@
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { RunningTransComponent } from './components/running-trans/running-trans.component';
 import { AdminTabsPage } from './pages/admin-tabs/admin-tabs.page';
 import { AdminWithdrawalComponent } from './components/admin-withdrawal/admin-withdrawal.component';
 import { AdminTransComponent } from './components/admin-trans/admin-trans.component';
@@ -83,6 +85,8 @@ const routes: Routes = [
     children:[
       {path:'admin-trans', component: AdminTransComponent, canActivate:[AdminGuard,]},
       {path:'admin-withdrawal', component: AdminWithdrawalComponent, canActivate:[AdminGuard]},
+      {path:'running-trans', component: RunningTransComponent, canActivate:[AdminGuard]},
+      {path:'manage-users', component: ManageUsersComponent, canActivate:[AdminGuard]},
     ]
   },
 

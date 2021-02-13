@@ -1,3 +1,37 @@
-<p>
-  bonus works!
-</p>
+
+<app-drop-down title="BONUS"></app-drop-down>
+
+<ion-content>
+
+    <h3 class="text-center">Bonus List</h3>
+    <div class="row mb-3">
+      
+        <div class="col-lg-9 col-md-8">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>#</th>
+                  <th>Amount</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of bonusList; index as i">
+                <tr>
+                  <td>{{ i + 1}} </td>
+                  <td>{{item?.amount |currency:'₦'}} </td>
+                  <td>{{item?.username_paying}} </td>
+                  <td>{{item?.username_receiver}} </td>
+                  <td>{{item?.date |date:'short'}} </td>
+                  
+                </tr>
+          
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+</ion-content>

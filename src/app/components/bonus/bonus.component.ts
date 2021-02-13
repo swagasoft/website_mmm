@@ -1,3 +1,5 @@
+import { LogicService } from './../../services/logic.service';
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bonus.component.scss'],
 })
 export class BonusComponent implements OnInit {
+bonusList : any[];
 
-  constructor() { }
 
-  ngOnInit() {}
+  constructor(private userService : UserService, private logicService : LogicService) { }
 
+  ngOnInit() {
+    this.getMyBonus();
+  }
+
+
+  getMyBonus(){
+    this.logicService.showSpinner();
+    this.userService.getUserBonus().subscribe(bonus => {
+      console.log(bonus);
+      this.bonusList = bonus['bonus'];
+      this.logicService.dismissSpinner();
+    }, err => {
+      console.log(err);
+      this.logicService.dismissSpinner();
+    });
+  }
 }

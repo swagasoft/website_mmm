@@ -26,7 +26,8 @@ notice :  any;
 
   }
 
-  model = { amount: null, email : this.authService.getEmail(), name: this.authService.getUsername(), image: null}
+  model = { amount: null, email : this.authService.getEmail(), name: this.authService.getUsername(), image: null,
+  date : Date.now()}
 
 
   ngOnInit(){

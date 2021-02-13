@@ -1,0 +1,16 @@
+
+
+<div class="ion-margin">
+  <div class="dropdown">
+    <button (click)="toggleMenu()" class="dropbtn"> <ion-icon name="menu"></ion-icon>  Admin Menu</button>
+    <div *ngIf="showMenu" id="myDropdown" class="dropdown-content show">
+       <a (click)="onClickMenu()" [routerLink]="['/admin-tabs/admin-withdrawal']" >Withdrawal</a>
+      <a  (click)="onClickMenu()" [routerLink]="['/admin-tabs/admin-trans']" routerLinkActive="router-link-active" >Transactions</a>
+      <a  (click)="onClickMenu()" [routerLink]="['/admin-tabs/running-trans']" routerLinkActive="router-link-active" >Running Investment</a>
+      <a  (click)="onClickMenu()" [routerLink]="['/admin-tabs/manage-users']" routerLinkActive="router-link-active" >Manage Users</a>
+      <a  (click)="onClickMenu()" [routerLink]="['/tabs/dashboard']" routerLinkActive="router-link-active" >User Dashboard</a>
+     
+  </div>
+  </div>
+  
+</div>

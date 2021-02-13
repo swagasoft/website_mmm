@@ -10,7 +10,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  token : any;
+ 
   public appUser: any; 
   
   
@@ -37,27 +37,41 @@ export class AuthService {
      
   
        getEmail(){
-        let payLoad = jwtDecode(this.token);
+        let payLoad = jwtDecode(this.getToken());
         let email = payLoad['email'];
+        console.log(email)
         return email;
        }
      
 
        getRole(){
-        let payLoad = jwtDecode(this.token);
+        let payLoad = jwtDecode(this.getToken());
+        console.log('payload ', payLoad);
         let role = payLoad['role'];
+        console.log(role);
+        return role;
+       }
+
+       checkForAdmin(){
+        let payLoad = jwtDecode(this.getToken());
+        let role = payLoad['role'];
+        if(role == 'ADMIN'){
+          return true
+        }else{
+          return false;
+        }
         return role;
        }
      
        getUsername(){
-        let payLoad = jwtDecode(this.token);
+        let payLoad = jwtDecode(this.getToken());
         let role = payLoad['username'];
         return role;
        }
      
 
        getAuthId(){
-        let payLoad = jwtDecode(this.token);
+        let payLoad = jwtDecode(this.getToken());
         let user_id = payLoad['_id'];
         return user_id;
        }
@@ -67,8 +81,7 @@ export class AuthService {
   
   
       public getToken(): string {
-        this.token = localStorage.getItem('token');
-        return this.token;
+        return localStorage.getItem('token');
         }
   
      
@@ -96,7 +109,6 @@ export class AuthService {
       }
   
        setToken(token: string) {
-         this.token = token;
         localStorage.setItem('token', token);
        
        }
@@ -108,7 +120,6 @@ export class AuthService {
        public logout(): void {
         this.deleteToken();
         localStorage.clear();
-        this.token = '';
         this.router.navigate(['/login'])
        }
   

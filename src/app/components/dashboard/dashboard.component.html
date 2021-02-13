@@ -1,14 +1,8 @@
 
- <ion-header>
-  <ion-toolbar color="light">
-    
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons> 
- 
-  </ion-toolbar>
-</ion-header>
+<app-drop-down title="Dashboard"></app-drop-down>
+
 <ion-content>
+  
 
 
 
@@ -166,6 +160,18 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-6 col-sm-12 col-lg-6 ">
+            <div class="card card-inverse card-warning">
+              <div class="card-block bg-warning">
+                <div class="rotate">
+                  <i class="fa fa-share fa-5x"></i>
+                </div>
+                <h6 class="text-uppercase text-center">Bonus</h6>
+                <h3 class="display-4 font-weight-bold text-center">{{userDetails?.bonus |currency:'₦'}} </h3>
+              </div>
+            </div>
+          </div>
         </div>
         <!--/row-->
 
@@ -177,10 +183,10 @@
               <ion-list>
                 <h4 class="text-dark">₦1,000</h4>
                 <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
-                <h3 class="p-2 text-dark">₦1500</h3>
+                <h3 class="p-2 text-dark">₦1200</h3>
               </ion-list>
             </ion-card>
-            <h6>₦1,000 will return ₦1,500 in 24hours</h6>
+            <h6>₦1,000 will return ₦1,200 in 24hours</h6>
             <ion-button [disabled]="!userDetails?.one_k_unlock || userDetails?.running_investment" (click)="start_1000()" expand="block" color="dark" shape="round">
               invest now 
              
@@ -197,10 +203,10 @@
               <ion-list>
                 <h4 class="text-dark">₦5,000</h4>
                 <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
-                <h3 class="p-2 text-dark">₦7,500</h3>
+                <h3 class="p-2 text-dark">₦6,000</h3>
               </ion-list>
             </ion-card>
-            <h6>₦5,000 will return ₦7,500 in 24hours</h6>
+            <h6>₦5,000 will return ₦6,000 in 24hours</h6>
             <ion-button [disabled]="!userDetails?.five_k_unlock || userDetails?.running_investment" (click)="start5000()" expand="block" color="dark" shape="round">
               invest now 
             </ion-button>
@@ -239,7 +245,7 @@
         <hr>
         <p class="lead">
          Unlock an investment and <Strong>Invest</Strong> the specific sum. Thereafter, you investment will start running and will accrued
-         50% 30% 25% on selected packages in 24 Hours.
+         20% on selected packages in 24 Hours.
         </p> <br>
 
 

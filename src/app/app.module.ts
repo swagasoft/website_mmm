@@ -1,3 +1,7 @@
+import { RunningTransComponent } from './components/running-trans/running-trans.component';
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { AdminDropTownComponent } from './components/admin-drop-town/admin-drop-town.component';
+import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { SignUpReferralPage } from './pages/sign-up-referral/sign-up-referral.page';
 import { AuthGuard } from './auth/auth.guard';
 import { PreviewComponent } from './components/preview/preview.component';
@@ -68,6 +72,10 @@ import { AdminGuard } from './auth/admin.guard';
   AdminWithdrawalComponent,
   AdminTabsPage,
   PreviewComponent,
+  DropDownComponent,
+  AdminDropTownComponent,
+  ManageUsersComponent,
+  RunningTransComponent,
 
 ProductPage],
   entryComponents: [UploadComponent, PreviewComponent],

@@ -69,10 +69,17 @@
         <div class="col-md-7 offset-md-3">
            <div class="title">
               <h2>Why <strong class="black">choose us</strong></h2>
-              <span>50%, 30%, 25% Investment return guaranteed, depending on your selected package.</span>
+              <span> 20% Investment return guaranteed on each selected package</span>
            </div>
+
+           <div class="ion-text-center">
+            <a (click)="goToDashboard()" [routerLink]="['/tabs/dashboard']" class="read-more">Get Started</a>
+         </div>
         </div>
      </div>
+
+   
+
   </div>
 </div>
 <div class="choose_bg">
@@ -89,21 +96,21 @@
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
            <div class="for_box">
               <i><img src="assets/icon/2.png"/></i>
-              <h3>50% Profit in 24 Hours</h3>
+              <h3>20% Profit in 24 Hours</h3>
               <p> Bronze Package @ ₦1000.00 return 50% in 24 hours</p>
            </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
            <div class="for_box">
               <i><img src="assets/icon/3.png"/></i>
-              <h3>30% Profit in 24 Hours</h3>
+              <h3>20% Profit in 24 Hours</h3>
               <p>Silver Package @ ₦5000.00 return 30% in 24 Hours</p>
            </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
            <div class="for_box">
               <i><img src="assets/icon/4.png"/></i>
-              <h3>25% Profit in 24 Hours</h3>
+              <h3>20% Profit in 24 Hours</h3>
               <p>Gold Package @ ₦10000 return 25% in 24 Hours</p>
            </div>
         </div>
@@ -192,11 +199,12 @@
            </div>
         </div>
      </div>
+     
      <div class="product-bg">
         <div class="product-bg-white">
         <div class="container">
            <div class="row">
-              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+              <!-- <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                  <div class="product-box">
                     <i><img src="assets/icon/p1.png"/></i>
                     <h3>Norton Internet Security</h3>
@@ -209,8 +217,8 @@
                     <h3>Norton Internet Security</h3>
                     <span>$25.00</span>
                  </div>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+              </div> -->
+              <!-- <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                  <div class="product-box">
                     <i><img src="assets/icon/p3.png"/></i>
                     <h3>Norton Internet Security</h3>
@@ -230,8 +238,8 @@
                     <h3>Norton Internet Security</h3>
                     <span>$25.00</span>
                  </div>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+              </div> -->
+              <!-- <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                  <div class="product-box">
                     <i><img src="assets/icon/p2.png"/></i>
                     <h3>Norton Internet Security</h3>
@@ -251,7 +259,7 @@
                     <h3>Norton Internet Security</h3>
                     <span>$25.00</span>
                  </div>
-              </div>
+              </div> -->
              
              
              
@@ -264,7 +272,7 @@
               <div class="row">
                  <div class="col-md-12">
                     <div class="title">
-                       <h3>What Clients Say?</h3>
+                       <h3>What are you waiting for?</h3>
                     </div>
                  </div>
               </div>
@@ -327,14 +335,14 @@
            <div class="row">
               <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                  <div class="yellow-box">
-                    <h3>REQUEST A FREE QUOTE<i><img src="assets/icon/calll.png"/></i></h3>
+                    <h3>START YOUR INVESTMENT RIGHT NOW!<i><img src="assets/icon/service2.png"/></i></h3>
                     
-                    <p>Get answers and advice from people you want it from.</p>
+                    <p>In just 24 hours, your 20% is ready for cash out.</p>
                  </div>
               </div>
                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
                  <div class="yellow-box">
-                    <a href="#">Get  Quote</a>
+                    <a [routerLink]="['/tabs/dashboard']"  >Invest Now</a>
                  </div>
               </div>
            </div>

@@ -1,0 +1,80 @@
+
+<app-admin-drop-town></app-admin-drop-town>
+<ion-content>
+  <ion-text class="text-center" color="dark">
+    <h5>Manage users</h5>
+  </ion-text>
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <input [(ngModel)]="model" class="mt-1" type="text" placeholder="search username" style="width: 100%;">
+      </ion-col>
+      <ion-col size="6">
+        <ion-button [disabled]="!model" color="dark" (click)="searchUser()">
+          <ion-icon slot="icon-only" name="search"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-card *ngIf="searchList.length > 0">
+    <div class="">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Position</th>
+              <th>Balance</th>
+              <th>Bank</th>
+              <th>Account Name</th>
+              <th>Account Number</th>
+              <th>Phone</th>
+              <th>Count</th>
+              <th>Investment</th>
+              <th>Active Investment</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of searchList; index as i">
+              <td>{{i + 1}} </td>
+              <td>{{item?.email}}  </td>
+              <td>{{item?.username}} </td>
+
+              <td>  <select (change)="changeUserRole($event, item)">
+                <option [value]="item?.role">{{item?.role}} </option>
+                <option  value="USER">USER</option>
+                <option  value="GUILDER">GUILDER</option>
+                <option  value="ADMIN">ADMIN</option>
+              </select>
+            </td>
+
+              <td>{{item?.balance |currency:'₦'}} </td>
+              <td> {{item?.bank}} </td>
+              <td> {{item?.bank_account_name}} </td>
+              <td> {{item?.bank_account_number}} </td>
+              <td> {{item?.phone}} </td>
+              <td> {{item?.total_count}} </td>
+              <td> {{item?.investment |currency:'₦'}} </td>
+              <td> {{item?.running_investment}} </td>
+              <td> {{item?.createdAt |date:'d/M/yy'}} </td>
+             
+  
+             
+              <td> 
+               
+            </td>
+            </tr>
+          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

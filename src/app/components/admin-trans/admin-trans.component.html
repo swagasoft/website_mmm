@@ -1,24 +1,8 @@
+<app-admin-drop-town></app-admin-drop-town>
 
- <ion-header>
-  <ion-toolbar color="light">
-    
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons> 
- 
-  </ion-toolbar>
-</ion-header>
 <ion-content>
-
-
-
-
-  <div class="col-lg-3 col-md-4  justify-content-center">
  
- 
-
-  </div>
-  <div class="col-lg-9 col-md-8">
+  <div class="">
     <div class="table-responsive">
       <table class="table table-striped">
         <thead class="thead-inverse">
@@ -29,8 +13,9 @@
             <th>Trans Id</th>
             <th>Username</th>
             <th>Email</th>
-            <th>Date</th>
+            <th>Credit Date</th>
             <th>Receipt</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -44,14 +29,21 @@
             <td>{{item?.transaction_id}} </td>
             <td>{{item?.name}} </td>
             <td>{{item?.email}} </td>
-            <td> <small>{{item?.date |date:'medium'}}</small> </td>
-            <ion-button *ngIf="item?.image" (click)="previewReceipt(item?.image)"  color="dark" shape="round">
+            <td> <small>{{item?.date |date:'short'}}</small> </td>
+            <ion-chip size="small" *ngIf="item?.image" (click)="previewReceipt(item?.image)"  color="danger" outline="true">
               View receipt
-            </ion-button>
+            </ion-chip>
 
-            <ion-chip *ngIf="!item?.image" color="primary" mode="ios" outline="true">
+            <ion-chip *ngIf="!item?.image" color="dark" mode="ios" outline="true">
               <ion-label>No RECEIPT</ion-label>
             </ion-chip>
+            <td> 
+             <div *ngIf="item?.status =='waiting'">
+              <ion-button *ngIf="item?.image" color="dark" (click)="presentConfirm(item)" size="small" fill="solid" >
+                confirm
+              </ion-button>
+             </div>
+          </td>
           </tr>
         
         </tbody>

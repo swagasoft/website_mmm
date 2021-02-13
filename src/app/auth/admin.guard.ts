@@ -8,15 +8,17 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-USER_ROLE: any;
+
   constructor(private authService: AuthService , private router: Router){
-this.USER_ROLE = authService.getRole();
+
   }
 
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
 
-    if(this.USER_ROLE =='ADMIN'){
+    
+
+    if(this.authService.isLoggedIn  && this.authService.getRole() == 'ADMIN'){
         return true;
     }
     

@@ -1,24 +1,8 @@
-
-
- <ion-header>
-  <ion-toolbar color="light">
-    
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons> 
- 
-  </ion-toolbar>
-</ion-header>
-
+<app-drop-down title="TRANSACTIONS"></app-drop-down>
 <ion-content>
 
 
 
-    <div class="col-lg-3 col-md-4  justify-content-center">
- 
- 
-
-    </div>
     <div class="col-lg-9 col-md-8">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -36,7 +20,8 @@
             <tr *ngFor="let item of transList; index as i">
               <td>{{i + 1}} </td>
               <td>{{item.amount |currency:'₦'}} </td>
-              <td>{{item?.status}} </td>
+              <td *ngIf="item?.status =='waiting'" class="text-warning">{{item?.status}} </td>
+              <td *ngIf="item?.status =='successful'" class="text-success">{{item?.status}} </td>
               <td>{{item?.transaction_id}} </td>
               <td>{{item?.name}} </td>
               <td>{{item?.date |date:'medium'}} </td>
