@@ -1,3 +1,4 @@
+import { ViewUserInfoPage } from './pages/view-user-info/view-user-info.page';
 import { RunningTransComponent } from './components/running-trans/running-trans.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { AdminDropTownComponent } from './components/admin-drop-town/admin-drop-town.component';
@@ -54,6 +55,8 @@ import { environment } from 'src/environments/environment';
 import { FlutterwaveModule } from 'flutterwave-angular-v3';
 import { AdminTabsPage } from './pages/admin-tabs/admin-tabs.page';
 import { AdminGuard } from './auth/admin.guard';
+import { AdminContactUsPage } from './pages/admin-contact-us/admin-contact-us.page';
+import { ForgetPasswordPage } from './pages/forget-password/forget-password.page';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
@@ -76,6 +79,9 @@ import { AdminGuard } from './auth/admin.guard';
   AdminDropTownComponent,
   ManageUsersComponent,
   RunningTransComponent,
+  AdminContactUsPage,
+  ForgetPasswordPage,
+  ViewUserInfoPage,
 
 ProductPage],
   entryComponents: [UploadComponent, PreviewComponent],

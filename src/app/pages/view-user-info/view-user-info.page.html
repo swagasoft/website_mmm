@@ -1,5 +1,7 @@
 
-<app-drop-down title="DOWN LINE"></app-drop-down>
+<app-navbar></app-navbar>
+<app-drop-down *ngIf="auth.getRole() == 'USER' || auth.getRole() =='GUIDER'" title="DOWN LINE"></app-drop-down>
+<app-admin-drop-town *ngIf="auth.getRole() == 'ADMIN'"></app-admin-drop-town>
 
 <ion-segment scrollable color="danger" (ionChange)="segmentChanged($event)"  value="1st_gen">
   <ion-segment-button value="1st_gen">
@@ -31,6 +33,7 @@
                   <th>#</th>
                   <th>Username</th>
                   <th>Email</th>
+                  <th>Role</th>
                   <th>Investment</th>
                   <th>Date</th>
                 </tr>
@@ -40,6 +43,7 @@
                   <td>{{ i + 1}} </td>
                   <td>{{item?.username}} </td>
                   <td>{{item?.email}} </td>
+                  <td>{{item?.role}} </td>
                   <td>{{item?.total_count}} </td>
                   <td>{{item?.createdAt |date:'medium'}} </td>
                   
@@ -138,7 +142,6 @@
                   <th>#</th>
                   <th>Username</th>
                   <th>Email</th>
-                  <th>Role</th>
                   <th>Investment</th>
                   <th>Date</th>
                 </tr>
@@ -148,7 +151,6 @@
                   <td>{{ i + 1}} </td>
                   <td>{{item?.username}} </td>
                   <td>{{item?.email}} </td>
-                  <td>{{item?.role}} </td>
                   <td>{{item?.total_count}} </td>
                   <td>{{item?.createdAt |date:'medium'}} </td>
                   

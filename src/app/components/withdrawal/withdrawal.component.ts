@@ -39,8 +39,16 @@ myWithdrawal  = [];
 
 
   withdrawNow(){
- if(this.amountModel.amount > this.userDetails.balance){
-  this.logicService.showError("You have enter more than your balance!")
+ if(this.amountModel.amount > this.userDetails.cash_out){
+  this.logicService.showError("You have enter more than your available cash out!")
+ }else if(this.amountModel.amount < 1000){
+
+  this.logicService.showError("withdrawal Limit is 1000");
+  return;
+ }else if(!this.userDetails?.running_investment){
+
+  this.logicService.showError('you need to have a running investment to make withdrawal!');
+  return
  }else{
 
   this.amountModel.date = Date.now();

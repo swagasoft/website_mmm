@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       console.log(res)
       console.log(res['token'])
       this.authService.setToken(res['token']);
-      this.router.navigateByUrl('/tabs/dashboard')
+      this.router.navigateByUrl('/dashboard')
       this.loading = false;
       
     },

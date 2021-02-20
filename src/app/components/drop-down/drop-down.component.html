@@ -6,12 +6,13 @@
     <div class="dropdown">
       <button (click)="toggleMenu()" class="dropbtn"> <ion-icon name="menu"></ion-icon>  Menu</button>
       <div  *ngIf="showMenu" id="myDropdown" class="dropdown-content show">
-         <a (click)="onClickMenu()" [routerLink]="['/tabs/transactions']" >Transaction</a>
-        <a  (click)="onClickMenu()" [routerLink]="['/tabs/bonus']" >My Bonus List</a>
+         <a (click)="onClickMenu()" [routerLink]="['/dashboard']" >dashboard</a>
+         <a (click)="onClickMenu()" [routerLink]="['/tabs/transactions']" >Transactions</a>
+        <a  (click)="onClickMenu()" [routerLink]="['/tabs/bonus']" >My Bonus</a>
         <a  (click)="onClickMenu()" [routerLink]="['/tabs/withdrawal']"  >My Withdrawal</a>
         <a  (click)="onClickMenu()" [routerLink]="['/tabs/profile']"  >Profile</a>
         <a  (click)="onClickMenu()" [routerLink]="['/tabs/notice-board']"  >Notice Board</a>
-        <a  (click)="onClickMenu()" [routerLink]="['/tabs/down-line']"  >My down line</a>
+        <a  (click)="onClickMenu()" [routerLink]="['/tabs/down-line']"  >My Down line</a>
         <a *ngIf="authService.isLoggedIn() && authService.getRole() =='ADMIN'"  (click)="onClickMenu()" [routerLink]="['/admin-tabs/admin-trans']"  > <strong>ADMIN PANEL</strong></a>
         <a  (click)="authService.logout()"   > <strong>Logout</strong></a>
        

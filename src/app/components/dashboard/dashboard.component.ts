@@ -2,7 +2,7 @@ import { LoginComponent } from './../login/login.component';
 import { LogicService } from './../../services/logic.service';
 import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UploadComponent } from '../upload/upload.component';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Flutterwave } from 'flutterwave-angular-v3';
@@ -12,7 +12,7 @@ import { Flutterwave } from 'flutterwave-angular-v3';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
  userDetails: any;
    //use your PUBLIC_KEY here
    reference: any;
@@ -39,15 +39,23 @@ timerInterval : any;
 
   ngOnInit() {
     this.generateReference();
-  
+  }
 
-    
+  ngOnDestroy(){
+    console.log('destroyinh')
   }
 
   ionViewDidEnter() {
+    console.log('GET USER DETAILS')
     this.getUserDetails();
     
   }
+
+ionViewDidLeave(){
+ console.log('leaving...')
+ this.ngOnDestroy();
+
+}
 
 
 
@@ -175,8 +183,9 @@ generateReference() {
 
 async unlockOne_k_package() {
   const alert = await this.alertController.create({
-    header: 'Unlocking ₦1000 Investment will cost you a fee of ₦100, make sure you have enough balance for this process. ',
-    message: 'NB <strong>₦100 will be deducted from your balance.</strong>',
+    header: 'Unlocking ₦1000 Investment  ',
+    message: '₦100 will be deducted from your balance',
+    subHeader:'will cost you a fee of ₦100, make sure you have enough balance for this process.',
     buttons: [
       {
         text: 'Cancel',
@@ -203,8 +212,9 @@ async unlockOne_k_package() {
 
 async unlock5000Package() {
   const alert = await this.alertController.create({
-    header: 'Unlocking ₦5000 Investment will cost you a fee of ₦500, make sure you have enough balance for this process. ',
+    header: 'Unlocking ₦5000 Investment  ',
     message: ' <strong>Do you really want to continue? </strong>',
+    subHeader: 'will cost you a fee of ₦500, make sure you have enough balance for this process.',
     buttons: [
       {
         text: 'Cancel',
@@ -231,8 +241,9 @@ async unlock5000Package() {
 
 async unlock10000Package() {
   const alert = await this.alertController.create({
-    header: 'Unlocking ₦10000 Investment will cost you a fee of ₦1000, make sure you have enough balance for this process. ',
+    header: 'Unlocking ₦10000 Investment ',
     message: ' <strong>Do you really want to continue? </strong>',
+    subHeader : ' will cost you a fee of ₦1000, make sure you have enough balance for this process.',
     buttons: [
       {
         text: 'Cancel',
@@ -543,7 +554,9 @@ completeInvestment(user){
   this.completedInvestModel.date =  new Date().getTime()
 
   this.userService.completeInvestment(this.completedInvestModel).subscribe(result => {
-    console.log(result);this.logicService.showSuccess(result['msg'])
+    console.log(result);
+    this.logicService.showSuccess(result['msg'])
+    this.userDetails = result['user']
     this.logicService.dismissSpinner();
 
     // setTimeout()

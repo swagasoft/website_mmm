@@ -1,0 +1,37 @@
+
+<app-admin-drop-town></app-admin-drop-town>
+
+<ion-content>
+
+
+
+  <div >
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th> Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of messageList; index as i">
+            <td>{{i + 1}} </td>
+            <td>{{item.email}} </td>
+            <td>{{item?.name}} </td>
+            <td >{{item?.phone}} </td>
+            <td> <ion-label>{{item?.message.substr(1,15)}}</ion-label> </td>
+            <td>{{item?.date |date:'dd-MM-yy'}} </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</ion-content>

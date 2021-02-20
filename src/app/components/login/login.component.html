@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h4>50% Profit in 24 hours</h4>
+                    <h4>20% Profit in 24 hours</h4>
                 </div>
             </div>
         </div>
@@ -61,12 +61,15 @@
                           name="eye" slot="end"></ion-icon> 
                           </ion-item>
 
-                          <div>Don't have account? <strong [routerLink]="['/signup']" >Sign Up</strong> </div>
+                          <div>Don't have account? <a href="/signup"><strong  >Sign Up</strong> </a></div>
   
                      
                           <div class="ion-text-center m-3">
                             <ion-button [disabled]="loading" (click)="submitForm()" [disabled]="!signUpForm.valid " 
                              color="dark"><div *ngIf="!loading">Submit</div> <ion-spinner *ngIf="loading" name="circular"></ion-spinner> </ion-button>
+                             <br>
+                             <div>Forget password? <a href="/forget-password"><strong  >Get help signing in</strong></a> </div>
+  
                         </div>
                 </form>
               </div>    

@@ -9,15 +9,33 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="6">
-        <input [(ngModel)]="model" class="mt-1" type="text" placeholder="search username" style="width: 100%;">
+        <ion-row>
+          <input [(ngModel)]="model" class="mt-1" type="text" placeholder="search username" style="width: 60%;">
+          <ion-button [disabled]="!model" color="dark" (click)="searchUser()">
+            <ion-icon slot="icon-only" name="search"></ion-icon>
+          </ion-button>
+        </ion-row>
+      
       </ion-col>
       <ion-col size="6">
-        <ion-button [disabled]="!model" color="dark" (click)="searchUser()">
-          <ion-icon slot="icon-only" name="search"></ion-icon>
-        </ion-button>
-      </ion-col>
+       <ion-item>
+        <select (change)="selectRole($event)" >
+          <option value="empty">select by role</option>
+          <option value="USER">users</option>
+          <option value="GUIDER">Guider</option>
+          <option value="ADMIN">Admin</option>
+        </select>
+       </ion-item>
+    
+
+      
+      </ion-col >
     </ion-row>
   </ion-grid>
+
+
+
+
 
 
   <ion-card *ngIf="searchList.length > 0">
@@ -42,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of searchList; index as i">
+            <tr (click)="viewDownline(item.username)" *ngFor="let item of searchList; index as i">
               <td>{{i + 1}} </td>
               <td>{{item?.email}}  </td>
               <td>{{item?.username}} </td>

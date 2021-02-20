@@ -14,9 +14,9 @@
          <li class=" ">
             <a class="text-dark p-2"  [routerLink]="['/home']" routerLinkActive="router-link-active" > <strong>HOME</strong> </a> 
          </li>
-         <li class=" ">
+         <!-- <li class=" ">
             <a   class="text-dark p-2"  [routerLink]="['/products']" routerLinkActive="router-link-active" > <strong>PRODUCTS</strong></a>
-         </li>
+         </li> -->
          <li class="">
             <a class="text-dark p-2" [routerLink]="['/about']" routerLinkActive="router-link-active" > <strong>ABOUT</strong></a> 
          </li>
@@ -30,7 +30,7 @@
             <a  class="text-dark p-2" [routerLink]="['/signup']" routerLinkActive="router-link-active" > <strong>SIGNUP</strong></a> 
          </li>
          <li *ngIf="authService.isLoggedIn()" class="nav-item">
-            <a  class="text-dark p-2" [routerLink]="['/tabs/dashboard']" routerLinkActive="router-link-active" > <strong>DASHBOARD</strong></a> 
+            <a  class="text-dark p-2" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" > <strong>DASHBOARD</strong></a> 
          </li>
      
        </ul>

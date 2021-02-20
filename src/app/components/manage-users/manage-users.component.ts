@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LogicService } from 'src/app/services/logic.service';
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ export class ManageUsersComponent implements OnInit {
 
   model : any
   searchList = [];
-  constructor(private userService : UserService, private logicService : LogicService) { }
+  constructor(private userService : UserService, private logicService : LogicService, private router:Router) { }
 
   ngOnInit() {}
 
@@ -40,4 +41,22 @@ export class ManageUsersComponent implements OnInit {
     });
   }
 
+  selectRole(event){
+    console.log(event.target.value);
+    this.logicService.showSpinner();
+    this.userService.getByRole(event.target.value).subscribe(data => {
+      console.log(data);
+      this.logicService.dismissSpinner();
+      this.searchList = data['users']
+    }, err => {
+      console.log(err);
+      this.logicService.dismissSpinner();
+    });
+
+  }
+
+  viewDownline(username){
+    console.log(username)
+    this.router.navigate(['/view-user-info', username]);
+  }
 }

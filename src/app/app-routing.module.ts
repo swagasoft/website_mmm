@@ -1,3 +1,6 @@
+import { ViewUserInfoPage } from './pages/view-user-info/view-user-info.page';
+import { ForgetPasswordPage } from './pages/forget-password/forget-password.page';
+import { AdminContactUsPage } from './pages/admin-contact-us/admin-contact-us.page';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { RunningTransComponent } from './components/running-trans/running-trans.component';
 import { AdminTabsPage } from './pages/admin-tabs/admin-tabs.page';
@@ -62,11 +65,12 @@ const routes: Routes = [
     path: 'sign-up/:username',
     loadChildren: () => import('./pages/sign-up-referral/sign-up-referral.module').then( m => m.SignUpReferralPageModule)
   },
+  {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {
     path: 'tabs',
     component: TabsPage,
     children:[
-      {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+      
       {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
       {path:'down-line', component: DownlineComponent, canActivate:[AuthGuard]},
       {path:'account', component: AccountComponent, canActivate:[AuthGuard]},
@@ -87,7 +91,23 @@ const routes: Routes = [
       {path:'admin-withdrawal', component: AdminWithdrawalComponent, canActivate:[AdminGuard]},
       {path:'running-trans', component: RunningTransComponent, canActivate:[AdminGuard]},
       {path:'manage-users', component: ManageUsersComponent, canActivate:[AdminGuard]},
+      {path:'admin-contact-us', component: AdminContactUsPage, canActivate:[AdminGuard]},
     ]
+  },
+  {
+    path: 'forget-password',component:ForgetPasswordPage
+  },
+  {
+    path: 'privacy-policy',
+    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+  },
+  {
+    path: 'terms-condition',
+    loadChildren: () => import('./pages/terms-condition/terms-condition.module').then( m => m.TermsConditionPageModule)
+  },
+  {
+    path: 'view-user-info/:username',
+    component: ViewUserInfoPage,canActivate:[AuthGuard]
   },
 
  

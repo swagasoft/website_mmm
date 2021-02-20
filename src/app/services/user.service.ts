@@ -99,6 +99,11 @@ export class UserService {
    let  body ={ username : this.auth.getUsername()}
     return this.http.put(environment.apiBaseUrl + '/get-user-down-line', body);
   }
+
+  showUserDownLine(username){
+   let  body ={ username : username}
+    return this.http.put(environment.apiBaseUrl + '/get-user-down-line', body);
+  }
   getUserBonus(){
    let  body ={ username : this.auth.getUsername()}
     return this.http.put(environment.apiBaseUrl + '/get-user-bonus', body);
@@ -127,6 +132,19 @@ export class UserService {
  
   submitContactForm(form){
     return this.http.put(environment.apiBaseUrl +'/submit-contact-form', form);
+  }
+
+  getContactUs(){
+    return this.http.get(environment.apiBaseUrl + '/get-contact-us');
+  }
+
+  forgetPassword(email){
+    return this.http.put(environment.apiBaseUrl + '/forget-password', email);
+  }
+
+  getByRole(role){
+    console.log(role);
+    return this.http.get(environment.apiBaseUrl +`/get-by-role${role}`);
   }
 
 }
