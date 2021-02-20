@@ -1,3 +1,5 @@
+import { AdminNoticeBoardPage } from './pages/admin-notice-board/admin-notice-board.page';
+import { ContactMessageViewPage } from './pages/contact-message-view/contact-message-view.page';
 import { ViewUserInfoPage } from './pages/view-user-info/view-user-info.page';
 import { ForgetPasswordPage } from './pages/forget-password/forget-password.page';
 import { AdminContactUsPage } from './pages/admin-contact-us/admin-contact-us.page';
@@ -109,6 +111,10 @@ const routes: Routes = [
     path: 'view-user-info/:username',
     component: ViewUserInfoPage,canActivate:[AuthGuard]
   },
+  {
+    path: 'contact-message-view/:id',component:ContactMessageViewPage, canActivate:[AdminGuard] },
+  {
+    path: 'admin-notice-board', component:AdminNoticeBoardPage, canActivate:[AdminGuard]},
 
  
 ];

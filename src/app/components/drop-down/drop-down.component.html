@@ -5,18 +5,53 @@
   <div class="ion-margin">
     <div class="dropdown">
       <button (click)="toggleMenu()" class="dropbtn"> <ion-icon name="menu"></ion-icon>  Menu</button>
-      <div  *ngIf="showMenu" id="myDropdown" class="dropdown-content show">
-         <a (click)="onClickMenu()" [routerLink]="['/dashboard']" >dashboard</a>
-         <a (click)="onClickMenu()" [routerLink]="['/tabs/transactions']" >Transactions</a>
-        <a  (click)="onClickMenu()" [routerLink]="['/tabs/bonus']" >My Bonus</a>
-        <a  (click)="onClickMenu()" [routerLink]="['/tabs/withdrawal']"  >My Withdrawal</a>
-        <a  (click)="onClickMenu()" [routerLink]="['/tabs/profile']"  >Profile</a>
-        <a  (click)="onClickMenu()" [routerLink]="['/tabs/notice-board']"  >Notice Board</a>
-        <a  (click)="onClickMenu()" [routerLink]="['/tabs/down-line']"  >My Down line</a>
-        <a *ngIf="authService.isLoggedIn() && authService.getRole() =='ADMIN'"  (click)="onClickMenu()" [routerLink]="['/admin-tabs/admin-trans']"  > <strong>ADMIN PANEL</strong></a>
-        <a  (click)="authService.logout()"   > <strong>Logout</strong></a>
+      <ul class="list-group"  *ngIf="showMenu" id="myDropdown" class="dropdown-content show">
+        <ion-item>
+          <ion-icon name="bar-chart-outline"></ion-icon>
+          <a  class="list-group-item" (click)="onClickMenu()" [routerLink]="['/dashboard']" >Dashboard</a>
+          
+        </ion-item>
+        <ion-item>
+          <ion-icon name="swap-horizontal-outline"></ion-icon>
+          <a  class="list-group-item" (click)="onClickMenu()" [routerLink]="['/tabs/transactions']" >Transactions</a>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="layers-outline"></ion-icon>
+          <a  class="list-group-item" (click)="onClickMenu()" [routerLink]="['/tabs/bonus']" >My Bonus</a>
+        </ion-item>
+         
+        <ion-item>
+          <ion-icon name="cash-outline"></ion-icon>
+          <a  class="list-group-item" (click)="onClickMenu()" [routerLink]="['/tabs/withdrawal']"  >My Withdrawal</a>
+        </ion-item>
        
-    </div>
+        <ion-item>
+          <ion-icon name="person-outline"></ion-icon>
+          <a  class="list-group-item" (click)="onClickMenu()" [routerLink]="['/tabs/profile']"  >Profile</a>
+        </ion-item>
+
+       <ion-item>
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <a  class="list-group-item" (click)="onClickMenu()" [routerLink]="['/tabs/notice-board']"  >Notice Board</a>
+       </ion-item>
+       
+       <ion-item>
+        <ion-icon name="people-outline"></ion-icon>
+        <a  class="list-group-item" (click)="onClickMenu()" [routerLink]="['/tabs/down-line']"  >My Down line</a>
+       </ion-item>
+       
+       <ion-item  *ngIf="authService.isLoggedIn() && authService.getRole() =='ADMIN'"   (click)="onClickMenu()"  >
+        <ion-icon name="list-outline"></ion-icon>
+        <a  class="list-group-item" href="/admin-tabs/admin-trans" ><strong>ADMIN PANEL</strong></a>
+       </ion-item>
+
+        
+      <ion-item>
+        <ion-icon  name="power"></ion-icon>
+        <a  class="list-group-item"  (click)="authService.logout()"   > <strong>Logout</strong></a>
+      </ion-item>
+       
+    </ul>
     </div>
     
   </div>

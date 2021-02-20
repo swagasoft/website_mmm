@@ -1,6 +1,17 @@
 <app-drop-down title="PROFILE"></app-drop-down>
 
 <ion-content class="ion-padding">
+  <div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Profile </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
   <div class="ion-text-center">
     <ion-chip  *ngIf="!userDetails?.bank || !userDetails?.bank_account_name || !userDetails?.bank_account_number"
@@ -12,8 +23,8 @@
   <ion-grid fixed >
                 <!--  Show users -->
                 <!-- <ion-col size-sm="0" size-md="2" size-lg="1">  -->
-             <ion-row>
-               <ion-col >
+             <ion-row class="justify-content-center">
+               <ion-col size-sm="12" size-md="10" size-lg="8">
                 <ion-list >
 
                   <ng-container >

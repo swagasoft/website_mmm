@@ -3,15 +3,16 @@
 <div class="ion-margin">
   <div class="dropdown">
     <button (click)="toggleMenu()" class="dropbtn"> <ion-icon name="menu"></ion-icon>  Admin Menu</button>
-    <div *ngIf="showMenu" id="myDropdown" class="dropdown-content show">
-       <a (click)="onClickMenu()" [routerLink]="['/admin-tabs/admin-withdrawal']" >Withdrawal</a>
-      <a  (click)="onClickMenu()" [routerLink]="['/admin-tabs/admin-trans']" routerLinkActive="router-link-active" >Transactions</a>
-      <a  (click)="onClickMenu()" [routerLink]="['/admin-tabs/running-trans']" routerLinkActive="router-link-active" >Running Investment</a>
-      <a  (click)="onClickMenu()" [routerLink]="['/admin-tabs/manage-users']" routerLinkActive="router-link-active" >Manage Users</a>
-      <a  (click)="onClickMenu()" [routerLink]="['/admin-tabs/admin-contact-us']" routerLinkActive="router-link-active" >Contact Messages</a>
-      <a  (click)="onClickMenu()" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >User Dashboard</a>
+    <ul class="list-group" *ngIf="showMenu" id="myDropdown" class="dropdown-content show">
+       <a  class="list-group-item" (click)="onClickMenu()" href="/admin-tabs/admin-withdrawal">Withdrawal</a>
+      <a  class="list-group-item" (click)="onClickMenu()" href="/admin-tabs/admin-trans"  >Transactions</a>
+      <a   class="list-group-item" (click)="onClickMenu()" href="/admin-tabs/running-trans" >Running Investment</a>
+      <a   class="list-group-item" (click)="onClickMenu()" href="/admin-tabs/manage-users" >Manage Users</a>
+      <a   class="list-group-item" (click)="onClickMenu()" href="/admin-tabs/admin-contact-us">Contact Messages</a>
+      <a class="list-group-item"  (click)="onClickMenu()" href="/admin-notice-board"> Admin Notice Board</a>
+      <a   class="list-group-item" (click)="onClickMenu()" href="/dashboard">User Dashboard</a>
      
-  </div>
+  </ul>
   </div>
   
 </div>

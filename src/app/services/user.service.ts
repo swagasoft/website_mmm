@@ -134,6 +134,15 @@ export class UserService {
     return this.http.put(environment.apiBaseUrl +'/submit-contact-form', form);
   }
 
+ 
+  submitNotice(form){
+    return this.http.put(environment.apiBaseUrl +'/submit-notice', form);
+  }
+
+  getNotice(){
+    return this.http.get(environment.apiBaseUrl +'/get-notice');
+  }
+
   getContactUs(){
     return this.http.get(environment.apiBaseUrl + '/get-contact-us');
   }
@@ -143,8 +152,11 @@ export class UserService {
   }
 
   getByRole(role){
-    console.log(role);
     return this.http.get(environment.apiBaseUrl +`/get-by-role${role}`);
+  }
+
+  getMessageById(id){
+    return this.http.get(environment.apiBaseUrl +`/get-message-by-id${id}`);
   }
 
 }

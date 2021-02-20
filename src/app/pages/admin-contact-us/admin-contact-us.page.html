@@ -2,7 +2,17 @@
 <app-admin-drop-town></app-admin-drop-town>
 
 <ion-content>
-
+  <div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h3>Contact messages from users </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
   <div >
@@ -10,7 +20,7 @@
       <table class="table table-striped">
         <thead class="thead-inverse">
           <tr>
-            <th>#</th>
+            <th>Status</th>
             <th>Email</th>
             <th>Name</th>
             <th>Phone</th>
@@ -18,9 +28,12 @@
             <th>Date</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let item of messageList; index as i">
-            <td>{{i + 1}} </td>
+        <tbody  *ngFor="let item of messageList; index as i">
+          <tr tappable [routerLink]="['/contact-message-view',item._id]" >
+            <td *ngIf="item.view">  </td>
+            <td *ngIf="!item.view"> <ion-chip color="success" mode="ios" outline="true">
+              <ion-label>New</ion-label>
+            </ion-chip> </td>
             <td>{{item.email}} </td>
             <td>{{item?.name}} </td>
             <td >{{item?.phone}} </td>

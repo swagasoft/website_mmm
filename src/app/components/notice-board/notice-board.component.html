@@ -1,6 +1,41 @@
 
+
 <app-drop-down title="NOTICE BOARD"></app-drop-down>
 
 <ion-content>
+  <div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Notice Board </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <ion-grid *ngFor="let item of noticeList">
+  <ion-row  class="justify-content-center" >
+    <ion-col size-sm="12" size-md="12" size-lg="8">
+      <ion-card  color="light">
+        <ion-item color="warning">
+        
+          <ion-label slot="end">{{item?.date |date}} </ion-label>
+        </ion-item>
+        <ion-card-header>
+          <ion-card-subtitle>{{item?.subject}} </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content class="pt-5">
+          {{item?.message}}
+        </ion-card-content>
+        
+        
+      </ion-card>
+
+    </ion-col>
+    <!-- <ion-col size-sm="0" size-md="0" size-lg="2"></ion-col> -->
+  </ion-row>
+</ion-grid>
 
 </ion-content>

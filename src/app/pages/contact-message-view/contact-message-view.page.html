@@ -1,0 +1,35 @@
+
+
+<app-navbar></app-navbar>
+<app-admin-drop-town></app-admin-drop-town>
+
+<ion-content>
+
+
+  <ion-grid >
+    <ion-row class="justify-content-center" >
+      <!-- <ion-col size-sm="0" size-md="1" size-lg="2"></ion-col> -->
+      <ion-col size-sm="12" size-md="12" size-lg="8">
+        <ion-card  color="light">
+          <ion-item color="warning">
+            <div> {{message?.name}} </div>
+            <ion-label slot="end">{{message?.date |date}} </ion-label>
+          </ion-item>
+          <ion-card-header>
+            <ion-card-subtitle>{{message?.phone}} </ion-card-subtitle>
+            <ion-card-title>{{message?.email}} </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="pt-5">
+            {{message?.message}}
+          </ion-card-content>
+          <ion-item color="light">
+            <a slot="end"  [href]="'mailto:'+ message?.email">Reply</a>
+          </ion-item>
+        </ion-card>
+
+      </ion-col>
+      <!-- <ion-col size-sm="0" size-md="1" size-lg="2"></ion-col> -->
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

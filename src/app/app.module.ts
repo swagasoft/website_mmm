@@ -57,6 +57,8 @@ import { AdminTabsPage } from './pages/admin-tabs/admin-tabs.page';
 import { AdminGuard } from './auth/admin.guard';
 import { AdminContactUsPage } from './pages/admin-contact-us/admin-contact-us.page';
 import { ForgetPasswordPage } from './pages/forget-password/forget-password.page';
+import { ContactMessageViewPage } from './pages/contact-message-view/contact-message-view.page';
+import { AdminNoticeBoardPage } from './pages/admin-notice-board/admin-notice-board.page';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
@@ -82,7 +84,8 @@ import { ForgetPasswordPage } from './pages/forget-password/forget-password.page
   AdminContactUsPage,
   ForgetPasswordPage,
   ViewUserInfoPage,
-
+  ContactMessageViewPage,
+  AdminNoticeBoardPage,
 ProductPage],
   entryComponents: [UploadComponent, PreviewComponent],
   imports: [
