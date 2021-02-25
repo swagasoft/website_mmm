@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar  color="warning">
+   <ion-icon class="ml-3" (click)="dismiss()" size="large" slot="start" name="close"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="container text-center">
+    <h6 class="mt-3">Enter the One Time Password sent to your mail</h6>
+    
+    <ion-card class="p-5">
+
+
+          <div *ngIf="!showPasswordInput">
+      <input name="user_otp"  type="number" [(ngModel)]="model.user_otp">
+
+      <ion-button (click)="verifyOtp()" color="dark">
+        submit
+      </ion-button> <br>
+
+
+      <ion-chip color="dark" >
+        <ion-label (click)="dismiss()">Retry</ion-label>
+      </ion-chip>
+          </div>
+      
+      <br>
+
+      <div *ngIf="showPasswordInput">
+
+        <form class="" [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
+        <label for="">Password *</label>
+        <div *ngFor="let validation of validationMessages.password">
+          <small class="text-danger text-center"  *ngIf="passwordForm.get('password').hasError(validation.type) && (passwordForm.get('password').dirty || passwordForm.get('password').touched)">  {{ validation.message }} </small>
+        </div>
+        <ion-item color="light">
+          <input class="form-control" #password placeholder="Password " type="password" formControlName="password"  >
+          <ion-icon slot="start" name="key"></ion-icon>
+          <!-- <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+          name="eye" slot="end"></ion-icon>  -->
+          <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+        name="eye" slot="end"></ion-icon> 
+        </ion-item>
+
+
+        <div *ngIf=" passwordForm.get('password').value !== passwordForm.get('password_conf').value">
+          <small class="text-danger"  >  password not matched </small>
+        </div>
+        <label for="">Password confirm *</label>
+        <ion-item color="light">
+          <input #password_conf class="form-control" placeholder="Password confirm" type="password" formControlName="password_conf"  >
+          <ion-icon slot="start" name="key"></ion-icon>
+          <ion-icon  (click)="password_conf.type=password_conf.type=='password'?'text':'password'" 
+          name="eye" slot="end"></ion-icon> 
+        </ion-item>
+
+
+        <div class="ion-text-center m-3">
+          <ion-button  (click)="submitPassword()" [disabled]="!passwordForm.valid " 
+           color="dark"><div >Submit</div>  </ion-button>
+           <br>
+           <div>Forget password? <a href="/forget-password"><strong  >Get help signing in</strong></a> </div>
+
+      </div>
+      </form>
+      </div>
+
+
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

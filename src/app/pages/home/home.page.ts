@@ -14,9 +14,5 @@ export class HomePage implements OnInit {
   }
 
 
-  goToDashboard(){
-    console.log('go to dash')
-    this.router.navigate(['/tabs/dashboard'])
-  }
 
 }

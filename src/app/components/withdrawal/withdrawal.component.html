@@ -18,14 +18,14 @@
       <ion-col size="6">
 
         <ion-card class="p-3" color="light">
-          <p>Available for withdrawal</p>
+          <p class="font-weight-bold text-center">Available for withdrawal</p>
             <h5 class="text-center">{{userDetails?.cash_out |currency:'₦'}} </h5>
         </ion-card>
 
       </ion-col>
       <ion-col size="6">
         <ion-card class="p-3" color="light">
-          <p>Withdrawal</p>
+          <p class="font-weight-bold text-center">Withdrawal Request</p>
           <h5 class="text-center">{{userDetails?.withdrawal_req  |currency:'₦'}} </h5>
         
         </ion-card>
@@ -37,8 +37,8 @@
 
       <ion-col size-sm="12" size-md="8" size-lg="10">
 
-        <div>Request Withdrawal</div>
-      <ion-item color="success">
+        <div class="text-center font-weight-bold">Withdrawal Request </div>
+      <ion-item color="warning">
         <ion-label> ₦</ion-label>
         <input style="color: black; font-weight: bold;" placeholder="Enter amount here" type="number" [(ngModel)]="amountModel.amount" >
         <i class="fab fa-amazon-pay fa-2x pl-2"></i>
@@ -52,8 +52,37 @@
     </ion-row>
     <div class="text-center">
   
-      <ion-button color="success" [disabled]="amountModel.amount < 100" (click)="withdrawNow()"  >
+      <ion-button color="dark" [disabled]="amountModel.amount < 100" (click)="withdrawNow()"  >
         Withdraw Now
+      </ion-button>
+    </div>
+  </ion-grid >
+
+
+  <ion-grid >
+    <ion-row>
+      <ion-col size-sm="0" size-md="2" size-lg="1"></ion-col>
+
+      <ion-col size-sm="12" size-md="8" size-lg="10">
+
+        <div class="text-center font-weight-bold">Re commit to balance</div>
+      <ion-item color="dark">
+        <ion-label> ₦</ion-label>
+        <input style="color: black; font-weight: bold;" placeholder="Enter amount here" type="number" [(ngModel)]="amountModel.recommit" >
+        
+        <ion-icon name="repeat-outline"></ion-icon>
+      </ion-item>
+      
+
+      </ion-col>
+      <ion-col size-sm="0" size-md="2" size-lg="1">   
+      </ion-col>
+
+    </ion-row>
+    <div class="text-center">
+  
+      <ion-button color="dark" [disabled]="amountModel.recommit < 100" (click)="reCommitNow()"  >
+        Recommit Now
       </ion-button>
     </div>
   </ion-grid >

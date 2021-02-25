@@ -1,3 +1,4 @@
+import { OtpModalComponent } from './components/otp-modal/otp-modal.component';
 import { ViewUserInfoPage } from './pages/view-user-info/view-user-info.page';
 import { RunningTransComponent } from './components/running-trans/running-trans.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
@@ -59,6 +60,8 @@ import { AdminContactUsPage } from './pages/admin-contact-us/admin-contact-us.pa
 import { ForgetPasswordPage } from './pages/forget-password/forget-password.page';
 import { ContactMessageViewPage } from './pages/contact-message-view/contact-message-view.page';
 import { AdminNoticeBoardPage } from './pages/admin-notice-board/admin-notice-board.page';
+import { TermsConditionPage } from './pages/terms-condition/terms-condition.page';
+import { PrivacyPolicyPage } from './pages/privacy-policy/privacy-policy.page';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage, FooterComponent, NavbarComponent, AboutPage,
@@ -86,6 +89,9 @@ import { AdminNoticeBoardPage } from './pages/admin-notice-board/admin-notice-bo
   ViewUserInfoPage,
   ContactMessageViewPage,
   AdminNoticeBoardPage,
+  TermsConditionPage,
+  PrivacyPolicyPage,
+  OtpModalComponent,
 ProductPage],
   entryComponents: [UploadComponent, PreviewComponent],
   imports: [

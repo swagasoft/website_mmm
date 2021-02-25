@@ -1,3 +1,5 @@
+import { PrivacyPolicyPage } from './pages/privacy-policy/privacy-policy.page';
+import { TermsConditionPage } from './pages/terms-condition/terms-condition.page';
 import { AdminNoticeBoardPage } from './pages/admin-notice-board/admin-notice-board.page';
 import { ContactMessageViewPage } from './pages/contact-message-view/contact-message-view.page';
 import { ViewUserInfoPage } from './pages/view-user-info/view-user-info.page';
@@ -100,12 +102,10 @@ const routes: Routes = [
     path: 'forget-password',component:ForgetPasswordPage
   },
   {
-    path: 'privacy-policy',
-    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+    path: 'privacy-policy', component:PrivacyPolicyPage
   },
   {
-    path: 'terms-condition',
-    loadChildren: () => import('./pages/terms-condition/terms-condition.module').then( m => m.TermsConditionPageModule)
+    path: 'terms-condition', component:TermsConditionPage
   },
   {
     path: 'view-user-info/:username',

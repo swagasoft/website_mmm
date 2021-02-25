@@ -15,6 +15,6 @@ import { PrivacyPolicyPage } from './privacy-policy.page';
     IonicModule,
     PrivacyPolicyPageRoutingModule
   ],
-  declarations: [PrivacyPolicyPage]
+  declarations: []
 })
 export class PrivacyPolicyPageModule {}

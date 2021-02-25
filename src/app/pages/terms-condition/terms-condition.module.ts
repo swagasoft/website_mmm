@@ -15,6 +15,6 @@ import { TermsConditionPage } from './terms-condition.page';
     IonicModule,
     TermsConditionPageRoutingModule
   ],
-  declarations: [TermsConditionPage]
+  declarations: []
 })
 export class TermsConditionPageModule {}

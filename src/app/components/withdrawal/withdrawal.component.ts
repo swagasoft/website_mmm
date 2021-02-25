@@ -16,8 +16,8 @@ myWithdrawal  = [];
     private authService :  AuthService) { }
 
 
-  amountModel = { amount : null, date : null, username : this.authService.getUsername() 
-    , email :this.authService.getEmail()}
+  amountModel = { amount : null, date : null, username : this.authService.getUsername() ,
+    recommit : null, email :this.authService.getEmail()}
 
   ngOnInit() {
     this.getUserDetails();
@@ -61,6 +61,33 @@ myWithdrawal  = [];
     this.amountModel.amount = null;
     this.logicService.showInfo(res['msg']);
     this.getMyWithdrawal();
+
+  }, err => {
+
+    console.log( err);
+    this.logicService.showError(err.error.msg);
+    this.logicService.dismissSpinner()
+  });
+
+ }
+
+  }
+
+  reCommitNow(){
+ if(this.amountModel.recommit > this.userDetails.cash_out){
+  this.logicService.showError("You have enter more than your available cash out!")
+ 
+ }else{
+
+  this.amountModel.date = Date.now();
+  this.logicService.showSpinner();
+  this.userService.reCommitBalance(this.amountModel).subscribe(res => {
+
+    console.log(res);
+    this.getUserDetails();
+    this.logicService.dismissSpinner();
+    this.amountModel.amount = null;
+    this.logicService.showInfo(res['msg']);
 
   }, err => {
 

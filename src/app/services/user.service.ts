@@ -43,6 +43,18 @@ export class UserService {
     return this.http.put(environment.apiBaseUrl  + '/unlock-10000-process', info);
   }
 
+  unlockTwenty(info){
+    return this.http.put(environment.apiBaseUrl  + '/unlock-twenty-process', info);
+  }
+
+  unlockFifty(info){
+    return this.http.put(environment.apiBaseUrl  + '/unlock-fifty-process', info);
+  }
+
+  unlockHundred(info){
+    return this.http.put(environment.apiBaseUrl  + '/unlock-hundred-process', info);
+  }
+
 
   start1000Investment(data){
     return this.http.put(environment.apiBaseUrl  + '/start-1000-process', data);
@@ -58,8 +70,23 @@ export class UserService {
     return this.http.put(environment.apiBaseUrl  + '/start-10000-process', data);
   }
 
+  startTwentyInvestment(data){
+    return this.http.put(environment.apiBaseUrl  + '/start-twenty-process', data);
+  }
+
+  startFiftyInvestment(data){
+    return this.http.put(environment.apiBaseUrl  + '/start-fifty-process', data);
+  }
+  
+  startHundredInvestment(data){
+    return this.http.put(environment.apiBaseUrl  + '/start-hundred-process', data);
+  }
+
   completeInvestment(investment){
     return this.http.post(environment.apiBaseUrl + '/complete-investment',investment);
+  }
+  updatePassword(password){
+    return this.http.post(environment.apiBaseUrl + '/update-password',password);
   }
 
 
@@ -78,6 +105,10 @@ export class UserService {
 
   startWithdrawal(trans){
     return this.http.post(environment.apiBaseUrl + '/start-withdrawal', trans);
+  }
+
+  reCommitBalance(trans){
+    return this.http.post(environment.apiBaseUrl + '/start-re-commit', trans);
   }
 
   getMyWithdrawal(){

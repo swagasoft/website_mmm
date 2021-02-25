@@ -1,7 +1,6 @@
 <app-navbar></app-navbar>
-<app-drop-down title="Dashboard"></app-drop-down>
-
 <ion-content>
+  <app-drop-down title="Dashboard"></app-drop-down>
   
 
 
@@ -19,7 +18,9 @@
                   <div class="row">
                       <div class="col-md-12">
                           <div class="titlepage">
-                              <h2>Welcome {{userDetails?.username}}</h2>
+                              <ion-chip class="p-5" color="dark" mode="ios" outline="true">
+                                <h3 >Welcome  <span class="font-weight-bold text-uppercase">{{userDetails?.username}} !</span></h3>
+                              </ion-chip>
                           </div>
                       </div>
                   </div>
@@ -50,9 +51,11 @@
               <i class="fab fa-amazon-pay fa-2x pl-2"></i>
             </ion-item>
 
+            <!-- public_key="FLWPUBK_TEST-32c34a10b25063883487eb99f916159a-X" -->
             <div class="row justify-content-center">
-              <flutterwave-make-payment  style="background-color: green;" *ngIf="amountModel?.amount > 99" 
-              public_key="FLWPUBK_TEST-32c34a10b25063883487eb99f916159a-X"
+              <flutterwave-make-payment  style="background-color: rgb(14, 14, 12);" *ngIf="amountModel?.amount > 99" 
+              public_key="FLWPUBK-1987e4f625af2a7d3aeeedfb0b9578ba-X"
+              
               [amount]='amountModel.amount'
               currency='NGN'
               payment_options="card"
@@ -89,9 +92,9 @@
              <ion-col size="2"></ion-col>
              <ion-col size="8"class="row justify-content-center" >
               <div>
-                <ion-badge color="warning" mode="ios"> <h4 class="text-dark">{{timerHours +' H'}}</h4> </ion-badge>
-                <ion-badge color="warning" mode="ios"> <h4 class="text-dark">{{timerMinutes +' M'}}</h4> </ion-badge>
-                <ion-badge color="warning" mode="ios"> <h4 class="text-dark">{{timerSeconds +' S'}}</h4> </ion-badge>
+                <ion-badge color="warning" mode="ios"> <h4  class="text-dark">{{timerHours +' H'}}</h4> </ion-badge>
+                <ion-badge color="light" mode="ios"> <h4 class="text-dark">{{timerMinutes +' M'}}</h4> </ion-badge>
+                <ion-badge color="danger" mode="ios"> <h4 class="text-white">{{timerSeconds +' S'}}</h4> </ion-badge>
               </div>
              </ion-col>
              <ion-col size="2"></ion-col>
@@ -194,48 +197,56 @@
 
         <hr>
 
-        <div class="row placeholders mb-3">
-          <div class="col-6  placeholder text-center">
-            <ion-card color="light">
-              <ion-list>
-                <h4 class="text-dark">₦1,000</h4>
-                <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
-                <h3 class="p-2 text-dark">₦1200</h3>
-              </ion-list>
-            </ion-card>
-            <h6>₦1,000 will return ₦1,200 in 24hours</h6>
-            <ion-button [disabled]="!userDetails?.one_k_unlock || userDetails?.running_investment" (click)="start_1000()" expand="block" color="dark" shape="round">
-              invest now 
-             
-            </ion-button>
-          
-           <ion-button color="dark" (click)="unlockOne_k_package()" size="small">
-            Unlock Package
-           </ion-button>
-          </div>
-
-
-          <div class="col-6  placeholder text-center">
-            <ion-card color="light">
-              <ion-list>
-                <h4 class="text-dark">₦5,000</h4>
-                <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
-                <h3 class="p-2 text-dark">₦6,000</h3>
-              </ion-list>
-            </ion-card>
-            <h6>₦5,000 will return ₦6,000 in 24hours</h6>
-            <ion-button [disabled]="!userDetails?.five_k_unlock || userDetails?.running_investment" (click)="start5000()" expand="block" color="dark" shape="round">
-              invest now 
-            </ion-button>
-          
-            <ion-button color="dark" (click)="unlock5000Package()" size="small">
+       
+          <div class="row placeholders mb-3">
+            
+            <div class="col-6  placeholder text-center">
+              <div class="bg-warning">
+              <ion-card color="light">
+                <ion-list>
+                  <h4 class="text-dark">₦1,000</h4>
+                  <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
+                  <h3 class="p-2 text-dark">₦1200</h3>
+                </ion-list>
+              </ion-card>
+              <h6>₦1,000 will return ₦1,200 in 24hours</h6>
+              <ion-button [disabled]="!userDetails?.one_k_unlock || userDetails?.running_investment" (click)="start_1000()"  color="warning" shape="round">
+                invest now 
+               
+              </ion-button>
+            
+             <ion-button color="dark" (click)="unlockOne_k_package()" size="small">
               Unlock Package
              </ion-button>
+            </div>
+        </div>
+
+
+         
+            <div class="col-6  placeholder text-center">
+              <div class="bg-warning">
+              <ion-card color="light">
+                <ion-list>
+                  <h4 class="text-dark">₦5,000</h4>
+                  <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
+                  <h3 class="p-2 text-dark">₦6,000</h3>
+                </ion-list>
+              </ion-card>
+              <h6>₦5,000 will return ₦6,000 in 24hours</h6>
+              <ion-button [disabled]="!userDetails?.five_k_unlock || userDetails?.running_investment" (click)="start5000()"  color="warning" shape="round">
+                invest now 
+              </ion-button>
+            
+              <ion-button color="dark" (click)="unlock5000Package()" size="small">
+                Unlock Package
+               </ion-button>
+            </div>
           </div>
 
           
 
-              <div class="col-6  placeholder text-center">
+              <div class="col-6 warning placeholder text-center">
+                <div class="bg-warning">
                 <ion-card color="light">
                   <ion-list>
                     <h4 class="text-dark">₦10,000</h4>
@@ -244,12 +255,71 @@
                   </ion-list>
                 </ion-card>
                 <h6>₦10,000 will return ₦12,000 in 24hours</h6>
-                <ion-button [disabled]="!userDetails?.ten_k_unlock  || userDetails?.running_investment" (click)="start10000()" expand="block" color="dark" shape="round">
+                <ion-button [disabled]="!userDetails?.ten_k_unlock  || userDetails?.running_investment" (click)="start10000()"  color="warning" shape="round">
                   invest now 
                 </ion-button>
                 <ion-button color="dark" (click)="unlock10000Package()" size="small">
                   Unlock Package
                  </ion-button>
+              </div>
+            </div>
+
+              <div class="col-6  placeholder text-center">
+                <div class="bg-warning">
+                <ion-card color="light">
+                  <ion-list>
+                    <h4 class="text-dark">₦20,000</h4>
+                    <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
+                    <h3 class="p-2 text-dark">₦24,000</h3>
+                  </ion-list>
+                </ion-card>
+                <h6>₦20,000 will return ₦24,000 in 24hours</h6>
+                <ion-button [disabled]="!userDetails?.twenty_k_unlock  || userDetails?.running_investment" (click)="startTwenty()"  color="warning" shape="round">
+                  invest now 
+                </ion-button>
+                <ion-button color="dark" (click)="unlockTwenty()" size="small">
+                  Unlock Package
+                 </ion-button>
+                 </div>
+              </div>
+
+              <div class="col-6  placeholder text-center">
+                <div class="bg-warning">
+                <ion-card color="light">
+                  <ion-list>
+                    <h4 class="text-dark">₦50,000</h4>
+                    <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
+                    <h3 class="p-2 text-dark">₦60,000</h3>
+                  </ion-list>
+                </ion-card>
+                <h6>₦50,000 will return ₦60,000 in 24hours</h6>
+                <ion-button [disabled]="!userDetails?.fifty_k_unlock  || userDetails?.running_investment" (click)="startFifty()"  color="warning" shape="round">
+                  invest now 
+                </ion-button>
+                <ion-button color="dark" (click)="unlockFiftyConfirm()" size="small">
+                  Unlock Package
+                 </ion-button>
+                </div>
+              </div>
+
+              <!--  hundred  -->
+              <div class="col-6  placeholder text-center">
+                <div class="bg-warning">
+                <ion-card color="light">
+                  <ion-list>
+                    <h4 class="text-dark">₦100,000</h4>
+                    <i  class=" text-warning fas fa-hand-holding-usd fa-3x"></i>
+                    <h3 class="p-2 text-dark">₦120,000</h3>
+                  </ion-list>
+                </ion-card>
+                <h6>₦100,000 will return ₦120,000 in 24hours</h6>
+                <ion-button [disabled]="!userDetails?.hundred_k_unlock  || userDetails?.running_investment" (click)="startHundred()"  color="warning" shape="round">
+                  invest now 
+                </ion-button>
+                <ion-button color="dark" (click)="unlockHundredConfirm()" size="small">
+                  Unlock Package
+                 </ion-button>
+                 </div>
               </div>
 
            
