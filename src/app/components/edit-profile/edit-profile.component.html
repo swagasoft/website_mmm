@@ -3,13 +3,7 @@
 
 
   <form class="mt-5" #editUser="ngForm" name="form" >
-    <ion-list>
-      <ion-item color="light">
-        <ion-label>fullname</ion-label>
-        <input  type="text" #fullname name="fullname" clearInput [(ngModel)]="userProps.fullname"
-        required="true">
-      </ion-item>
-    </ion-list>
+ 
     <ion-list>
       <ion-item color="light">
         <ion-label>email</ion-label>
@@ -60,8 +54,8 @@
       </ion-item>
     </ion-list>
 
-    <div class="ion-text-center"  type="submit" (click)="editUser.valid && confirmEdit()">
-      <ion-button>SUBMIT</ion-button>
+    <div class="ion-text-center"   type="submit" >
+      <ion-button color="warning" (click)=" confirmEdit()">SUBMIT</ion-button>
 
     </div>
 

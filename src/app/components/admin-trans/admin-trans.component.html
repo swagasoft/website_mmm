@@ -28,6 +28,7 @@
             <th>Credit Date</th>
             <th>Receipt</th>
             <th>Action</th>
+            <th>delete</th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +55,12 @@
               <ion-button *ngIf="item?.image" color="dark" (click)="presentConfirm(item)" size="small" fill="solid" >
                 confirm
               </ion-button>
+             </div>
+          </td>
+            <td> 
+             <div >
+            
+              <ion-icon (click)="presentDelete(item)" color="danger" name="trash"></ion-icon>
              </div>
           </td>
           </tr>

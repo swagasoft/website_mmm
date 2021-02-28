@@ -190,5 +190,9 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl +`/get-message-by-id${id}`);
   }
 
+  deleteTransById(id){
+    return this.http.get(environment.apiBaseUrl +`/delete-trans-by-id${id}`);
+  }
+
 }
  

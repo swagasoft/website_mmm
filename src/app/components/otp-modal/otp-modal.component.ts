@@ -32,7 +32,6 @@ export class OtpModalComponent implements OnInit {
 
   ngOnInit() {
     this.showPasswordInput = false;
-    console.log(this.email);
     this.passwordForm = this.formBuilder.group({
       password: new FormControl(null, Validators.compose([
         Validators.minLength(6),
@@ -56,7 +55,6 @@ export class OtpModalComponent implements OnInit {
   }
 
   verifyOtp(){
-    console.log(this.model.user_otp)
     if(this.otp == this.model.user_otp){
       console.log('correct otp')
       this.showPasswordInput = true;
@@ -67,7 +65,6 @@ export class OtpModalComponent implements OnInit {
   }
 
   submitPassword(){
-    console.log(this.passwordForm.value)
     this.userService.updatePassword(this.passwordForm.value).subscribe(res=> {
       this.logicService.showSuccess(res['msg']);
      setTimeout(()=>{

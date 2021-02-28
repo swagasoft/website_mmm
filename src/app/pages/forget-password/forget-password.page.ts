@@ -24,12 +24,10 @@ loading : boolean;
   submitForm(){
     this.loading = true;
     this.userService.forgetPassword(this.formModel).subscribe(res => {
-      console.log(res);
       this.loading = false;
       this.presentOtpModal(res['otp']);
       this.logicService.showInfo(res['msg'])
     }, err => {
-      console.log(err);
       this.logicService.showError("If your email exist , you should receive a link for reset password")
       
       this.loading = false;

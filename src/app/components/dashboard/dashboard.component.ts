@@ -66,7 +66,6 @@ ionViewDidLeave(){
     clearInterval(this.timerInterval);
     this.logicService.showSpinner();
     this.userService.getUserDetails().subscribe( res => {
-      console.log(res)
       this.userDetails = res['user'];
       this.userService.setUserProfile(this.userDetails);
 
@@ -74,14 +73,12 @@ ionViewDidLeave(){
       this.customerDetails.name = this.userDetails.username;
       this.customerDetails.phone_number = this.userDetails.phone;
      if(this.userDetails.running_investment){
-       console.log('RUNNING INVESTMENT EXIST')
       this.calculateDiff(this.userDetails?.investment_timer)
      }
      this.logicService.dismissSpinner();
       
     }, err => {
       this.logicService.dismissSpinner();
-      console.log(err, 'error getting user')
     })
   }
 
@@ -96,7 +93,6 @@ async uploadTransReceipt() {
   await modal.present();
 
   const data = await modal.onDidDismiss();
-  console.log(data)
 }
 
 async oneKInvestment() {
@@ -110,10 +106,7 @@ async oneKInvestment() {
   await modal.present();
 
   const data = await modal.onDidDismiss();
-  console.log(data)
 }
-
-
 completedInvestModel = { amount : null , profit: null , date : null}
 
 
@@ -128,7 +121,6 @@ async fiveKInvestment() {
   await modal.present();
 
   const data = await modal.onDidDismiss();
-  console.log(data)
 }
 
 
@@ -136,10 +128,8 @@ async fiveKInvestment() {
 // payment...
 makePaymentCallback(response: any): void {
   this.generateReference();
-  console.log("Pay", response);
   response.date = Date.now();
   this.userService.submitTransaction(response).subscribe( saved => {
-    console.log(saved);
     this.userDetails = saved['newData'];
     window.location.reload();
     
@@ -275,13 +265,11 @@ if (this.userDetails.balance < 1000) {
 } else {
   this.logicService.showSpinner();
   this.userService.unlock10000Investment(info).subscribe(res => {
-    console.log(res)
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.showSuccess(res['msg']);
     this.logicService.dismissSpinner();
   }, err => {
-console.log(err)
 this.logicService.dismissSpinner();
 this.logicService.showError(err.error.msg);
   });
@@ -329,13 +317,11 @@ if (this.userDetails.balance < 2000) {
 } else {
   this.logicService.showSpinner();
   this.userService.unlockTwenty(info).subscribe(res => {
-    console.log(res)
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.showSuccess(res['msg']);
     this.logicService.dismissSpinner();
   }, err => {
-console.log(err)
 this.logicService.dismissSpinner();
 this.logicService.showError(err.error.msg);
   });
@@ -384,13 +370,11 @@ if (this.userDetails.balance < 5000) {
 } else {
   this.logicService.showSpinner();
   this.userService.unlockFifty(info).subscribe(res => {
-    console.log(res)
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.showSuccess(res['msg']);
     this.logicService.dismissSpinner();
   }, err => {
-console.log(err)
 this.logicService.dismissSpinner();
 this.logicService.showError(err.error.msg);
   });
@@ -437,7 +421,6 @@ if (this.userDetails.balance < 10000) {
 } else {
   this.logicService.showSpinner();
   this.userService.unlockHundred(info).subscribe(res => {
-    console.log(res)
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.showSuccess(res['msg']);
@@ -460,7 +443,6 @@ if (this.userDetails.balance < 500) {
 } else {
   this.logicService.showSpinner();
   this.userService.unlock5000Investment(info).subscribe(res => {
-    console.log(res)
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.showSuccess(res['msg']);
@@ -482,13 +464,11 @@ if (this.userDetails.balance < 100) {
 } else {
   this.logicService.showSpinner();
   this.userService.unlock_1000_process(info).subscribe(res => {
-    console.log(res)
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.showSuccess(res['msg']);
     this.logicService.dismissSpinner();
   }, err => {
-console.log(err)
 this.logicService.dismissSpinner();
 this.logicService.showError(err.error.msg);
   });
@@ -590,7 +570,6 @@ if (this.userDetails.balance < 5000) {
   const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
   this.logicService.showSpinner();
   this.userService.start5000Investment(dateProps).subscribe(res => {
-    console.log(res);
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
@@ -650,7 +629,6 @@ if (this.userDetails.balance < 10000) {
   const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
   this.logicService.showSpinner();
   this.userService.start10000Investment(dateProps).subscribe(res => {
-    console.log(res);
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")

@@ -20,14 +20,13 @@ export class EditProfileComponent implements OnInit {
   @Input() phone: string;
   @Input() _id: string;
   @Input() bank: string;
-  @Input() bank_account_no: string;
+  @Input() bank_account_number: string;
   @Input() bank_account_name: string;
   loading = false;
   constructor(public modalControl : ModalController, private userService: UserService,
     public logicService : LogicService) { }
 
   userProps = {
-    fullname : '',
     username : '',
     email : '',
     role: '',
@@ -46,14 +45,13 @@ export class EditProfileComponent implements OnInit {
     console.log(this.phone);
 
     this.userProps = {
-      fullname : this.fullname,
       username : this.username,
       email : this.email,
       role: this.role,
       phone: this.phone,
       id:this._id,
       bank: this.bank,
-      bank_account_no: this.bank_account_no,
+      bank_account_no: this.bank_account_number,
       bank_account_name: this.bank_account_name,
     }
 

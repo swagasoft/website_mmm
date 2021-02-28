@@ -1,3 +1,4 @@
+import { LogicService } from './../../services/logic.service';
 import { EditProfileComponent } from './../edit-profile/edit-profile.component';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit {
   
     constructor(private userService: UserService, private router: Router,  private modalController: ModalController,
         private actionSheetController: ActionSheetController, private alertController: AlertController,
-        private authService :  AuthService) { }
+        private authService :  AuthService, private logicService : LogicService) { }
   
     ngOnInit() {
       this.getProfile();
@@ -34,12 +35,10 @@ export class ProfileComponent implements OnInit {
       this.userService.getUserDetails().subscribe(
         res => {
           this.loading = false;
-          console.log(res)
           this.userDetails = res['user'];
         },
         err => {
           this.loading = false;
-          console.log('error getting values..', err);
         }
       );
     }
@@ -49,19 +48,17 @@ export class ProfileComponent implements OnInit {
       const modal = await this.modalController.create({
         component: EditProfileComponent,
         componentProps: {
-          'fullname': this.userDetails.fullname,
           'email' : this.userDetails.email,
           'username': this.userDetails.username,
           'phone': this.userDetails.phone,
           'role':this.userDetails.role,
           '_id': this.userDetails._id,
           'bank': this.userDetails.bank,
-          'bank_account_no': this.userDetails.bank_account_no,
+          'bank_account_number': this.userDetails.bank_account_number,
           'bank_account_name': this.userDetails.bank_account_name,
         }
       });
       modal.onDidDismiss().then(()=> {
-        console.log('i dismiss this modal');
         this.getProfile();
       });
       return await modal.present();
@@ -76,7 +73,6 @@ export class ProfileComponent implements OnInit {
       buttons: [{
         text:'confirm',
         handler: (password)=> {
-          console.log(password)
           this.userService.validatePassword(password).subscribe(
             res => {
               this.loading = false;
@@ -84,7 +80,8 @@ export class ProfileComponent implements OnInit {
             },
             err => {
               this.loading = false;
-              // this.logi.generalToast("error", err.error.msg, 2000);
+              this.logicService.showError('Invalid user credentials')
+
             }
           );
         }

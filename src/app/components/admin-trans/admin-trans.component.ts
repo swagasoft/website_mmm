@@ -16,6 +16,15 @@ transList = [];
 
   ngOnInit() {
     console.log('FIRE FIRE FIRE FIRE3333')
+    this.getAllTrans();
+   
+  }
+
+  ionViewDidEnter(){
+   console.log('enter transsssss')
+  }
+
+  getAllTrans(){
     this.logicService.showSpinner();
     this.userService.adminGetTransaction().subscribe(trans => {
       
@@ -26,10 +35,6 @@ transList = [];
       console.log('no trans', err);
       this.logicService.dismissSpinner();
     })
-  }
-
-  ionViewDidEnter(){
-   console.log('enter transsssss')
   }
 
 
@@ -79,6 +84,44 @@ transList = [];
     }, err => {
       result.status = "waiting";
     });
+  }
+
+
+
+
+  async presentDelete(trans) {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'This record will be deleted and not reco',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay', trans);
+            this.deleteTrans(trans._id)
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+
+
+  deleteTrans(id){
+    this.userService.deleteTransById(id).subscribe(res => {
+      console.log(res);
+      this.getAllTrans();
+    }, err => {
+      console.log();
+    })
   }
 
 }
