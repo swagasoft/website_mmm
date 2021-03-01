@@ -42,7 +42,6 @@ timerInterval : any;
   }
 
   ngOnDestroy(){
-    console.log('destroyinh')
   }
 
   ionViewDidEnter() {
@@ -516,7 +515,6 @@ if (this.userDetails.balance < 1000) {
   const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
   this.logicService.showSpinner();
   this.userService.start1000Investment(dateProps).subscribe(res => {
-    console.log(res);
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
@@ -683,7 +681,6 @@ if (this.userDetails.balance < 20000) {
   const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
   this.logicService.showSpinner();
   this.userService.startTwentyInvestment(dateProps).subscribe(res => {
-    console.log(res);
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
@@ -739,7 +736,6 @@ if (this.userDetails.balance < 50000) {
   const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
   this.logicService.showSpinner();
   this.userService.startFiftyInvestment(dateProps).subscribe(res => {
-    console.log(res);
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
@@ -795,7 +791,6 @@ if (this.userDetails.balance < 100000) {
   const dateProps = { date : new Date(new Date().getTime() + 60 * 60 * 24 * 1000)}
   this.logicService.showSpinner();
   this.userService.startHundredInvestment(dateProps).subscribe(res => {
-    console.log(res);
     this.userDetails = res['user'];
     this.userService.setUserProfile(this.userDetails);
     this.logicService.presentAlertConfirm("Investment started", "Your investment has started successfully, profit will accrued in 24Hr time")
@@ -837,8 +832,8 @@ this.timerInterval = setInterval(()=> {
   // Display the result in the element with id="demo"
   // document.getElementById("demo").innerHTML = this.timerDays + "d " + this.timerHours + "h "
   // + this.timerMinutes + "m " + this.timerSeconds + "s ";
-  console.log(this.timerDays + "d " + this.timerHours + "h "
-  + this.timerMinutes + "m " + this.timerSeconds + "s ");
+  // console.log(this.timerDays + "d " + this.timerHours + "h "
+  // + this.timerMinutes + "m " + this.timerSeconds + "s ");
 
   // If the count down is finished, write some text
   if (distance < 1) {
@@ -863,7 +858,6 @@ completeInvestment(user){
   this.completedInvestModel.date =  new Date().getTime()
 
   this.userService.completeInvestment(this.completedInvestModel).subscribe(result => {
-    console.log(result);
     this.logicService.showSuccess(result['msg'])
     this.userDetails = result['user']
     this.logicService.dismissSpinner();

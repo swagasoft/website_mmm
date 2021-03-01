@@ -215,7 +215,7 @@
                
               </ion-button>
             
-             <ion-button color="dark" (click)="unlockOne_k_package()" size="small">
+             <ion-button color="dark" *ngIf="userDetails?.selection == 1 " (click)="unlockOne_k_package()" size="small">
               Unlock Package
              </ion-button>
             </div>
@@ -237,7 +237,7 @@
                 invest now 
               </ion-button>
             
-              <ion-button color="dark" (click)="unlock5000Package()" size="small">
+              <ion-button color="dark" *ngIf="userDetails?.selection <= 5 " (click)="unlock5000Package()" size="small">
                 Unlock Package
                </ion-button>
             </div>
@@ -258,7 +258,7 @@
                 <ion-button [disabled]="!userDetails?.ten_k_unlock  || userDetails?.running_investment" (click)="start10000()"  color="warning" shape="round">
                   invest now 
                 </ion-button>
-                <ion-button color="dark" (click)="unlock10000Package()" size="small">
+                <ion-button color="dark" *ngIf="userDetails?.selection <= 10" (click)="unlock10000Package()" size="small">
                   Unlock Package
                  </ion-button>
               </div>
@@ -277,7 +277,7 @@
                 <ion-button [disabled]="!userDetails?.twenty_k_unlock  || userDetails?.running_investment" (click)="startTwenty()"  color="warning" shape="round">
                   invest now 
                 </ion-button>
-                <ion-button color="dark" (click)="unlockTwenty()" size="small">
+                <ion-button color="dark" *ngIf="userDetails?.selection <= 20 " (click)="unlockTwenty()" size="small">
                   Unlock Package
                  </ion-button>
                  </div>
@@ -296,7 +296,7 @@
                 <ion-button [disabled]="!userDetails?.fifty_k_unlock  || userDetails?.running_investment" (click)="startFifty()"  color="warning" shape="round">
                   invest now 
                 </ion-button>
-                <ion-button color="dark" (click)="unlockFiftyConfirm()" size="small">
+                <ion-button color="dark" *ngIf="userDetails?.selection <= 50 " (click)="unlockFiftyConfirm()" size="small">
                   Unlock Package
                  </ion-button>
                 </div>
@@ -316,7 +316,7 @@
                 <ion-button [disabled]="!userDetails?.hundred_k_unlock  || userDetails?.running_investment" (click)="startHundred()"  color="warning" shape="round">
                   invest now 
                 </ion-button>
-                <ion-button color="dark" (click)="unlockHundredConfirm()" size="small">
+                <ion-button color="dark" *ngIf="userDetails?.selection <= 100 " (click)="unlockHundredConfirm()" size="small">
                   Unlock Package
                  </ion-button>
                  </div>
