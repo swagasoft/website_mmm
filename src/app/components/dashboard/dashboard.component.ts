@@ -106,7 +106,7 @@ async oneKInvestment() {
 
   const data = await modal.onDidDismiss();
 }
-completedInvestModel = { amount : null , profit: null , date : null}
+completedInvestModel = { amount : null , profit: null , date : null, username:''}
 
 
 async fiveKInvestment() {
@@ -854,6 +854,7 @@ this.timerInterval = setInterval(()=> {
 completeInvestment(user){
   this.logicService.showSpinner();
   this.completedInvestModel.amount  = user.investment;
+  this.completedInvestModel.username  = this.authService.getUsername();
   this.completedInvestModel.profit  = 20/100 * user.investment;
   this.completedInvestModel.date =  new Date().getTime()
 

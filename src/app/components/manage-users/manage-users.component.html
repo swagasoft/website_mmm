@@ -58,6 +58,8 @@
               <th>Username</th>
               <th>Position</th>
               <th>Balance</th>
+              <th>Accrued</th>
+              <th>Cashout</th>
               <th>Bank</th>
               <th>Account Name</th>
               <th>Account Number</th>
@@ -84,6 +86,8 @@
             </td>
 
               <td>{{item?.balance |currency:'₦'}} </td>
+              <td>{{item?.accrued |currency:'₦'}} </td>
+              <td>{{item?.cash_out |currency:'₦'}} </td>
               <td> {{item?.bank}} </td>
               <td> {{item?.bank_account_name}} </td>
               <td> {{item?.bank_account_number}} </td>

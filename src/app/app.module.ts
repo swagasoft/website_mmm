@@ -1,3 +1,5 @@
+import { HistoryPage } from './pages/history/history.page';
+import { AdminHistoryPage } from './pages/admin-history/admin-history.page';
 import { OtpModalComponent } from './components/otp-modal/otp-modal.component';
 import { ViewUserInfoPage } from './pages/view-user-info/view-user-info.page';
 import { RunningTransComponent } from './components/running-trans/running-trans.component';
@@ -91,6 +93,8 @@ import { PrivacyPolicyPage } from './pages/privacy-policy/privacy-policy.page';
   AdminNoticeBoardPage,
   TermsConditionPage,
   PrivacyPolicyPage,
+  AdminHistoryPage,
+  HistoryPage,
   OtpModalComponent,
 ProductPage],
   entryComponents: [UploadComponent, PreviewComponent],

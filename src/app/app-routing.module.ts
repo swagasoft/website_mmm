@@ -96,6 +96,12 @@ const routes: Routes = [
       {path:'running-trans', component: RunningTransComponent, canActivate:[AdminGuard]},
       {path:'manage-users', component: ManageUsersComponent, canActivate:[AdminGuard]},
       {path:'admin-contact-us', component: AdminContactUsPage, canActivate:[AdminGuard]},
+      {
+        path: 'admin-history',
+        loadChildren: () => import('./pages/admin-history/admin-history.module').then( m => m.AdminHistoryPageModule),
+        canActivate:[AdminGuard]
+      },
+    
     ]
   },
   {
@@ -115,7 +121,12 @@ const routes: Routes = [
     path: 'contact-message-view/:id',component:ContactMessageViewPage, canActivate:[AdminGuard] },
   {
     path: 'admin-notice-board', component:AdminNoticeBoardPage, canActivate:[AdminGuard]},
-
+  {
+    path: 'history',
+    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule),
+    canActivate: [AuthGuard]
+  },
+ 
  
 ];
 

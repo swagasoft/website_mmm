@@ -42,7 +42,7 @@
             <td>{{item?.transaction_id}} </td>
             <td>{{item?.name}} </td>
             <td>{{item?.email}} </td>
-            <td> <small>{{item?.date |date:'short'}}</small> </td>
+            <td> <small>{{item?.date |date:'dd/MM/yy'}}</small> </td>
             <ion-chip size="small" *ngIf="item?.image" (click)="previewReceipt(item?.image)"  color="danger" outline="true">
               View receipt
             </ion-chip>

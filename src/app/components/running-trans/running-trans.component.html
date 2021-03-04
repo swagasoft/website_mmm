@@ -20,7 +20,7 @@
 
 
 
-  <div class="col-lg-9 col-md-8">
+  <!-- <div class="col-lg-9 col-md-8"> -->
     <div class="table-responsive">
       <table class="table table-striped">
         <thead class="thead-inverse">
@@ -30,6 +30,9 @@
             <th>Email</th>
             <th>Investment</th>
             <th>Balance</th>
+            <th>Accrued</th>
+            <th>Cash Out</th>
+            <th>Bonus</th>
             <th>Counter</th>
           </tr>
         </thead>
@@ -40,13 +43,16 @@
             <td  >{{item?.email}} </td>
             <td>{{item?.investment |currency:'₦'}} </td>
             <td>{{item?.balance |currency:'₦'}} </td>
+            <td>{{item?.accrued |currency:'₦'}} </td>
+            <td>{{item?.cash_out |currency:'₦'}} </td>
+            <td>{{item?.bonus |currency:'₦'}} </td>
             <td>{{item?.total_count}} </td>
           </tr>
         
         </tbody>
       </table>
     </div>
-  </div>
+  <!-- </div> -->
 
 
 </ion-content>

@@ -95,6 +95,14 @@ export class UserService {
   }
 
 
+  adminGetHistory(){
+    return this.http.get(environment.apiBaseUrl + '/admin-get-history');
+  }
+  history(){
+    return this.http.get(environment.apiBaseUrl + '/history');
+  }
+
+
   setUserProfile(profile) {
     this.userProfile.next(profile);
   }
