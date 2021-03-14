@@ -177,6 +177,10 @@ export class UserService {
   submitNotice(form){
     return this.http.put(environment.apiBaseUrl +'/submit-notice', form);
   }
+ 
+  claimBonus(){
+    return this.http.get(environment.apiBaseUrl +'/claim-bonus');
+  }
 
   getNotice(){
     return this.http.get(environment.apiBaseUrl +'/get-notice');

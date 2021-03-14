@@ -9,12 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BonusComponent implements OnInit {
 bonusList : any[];
+userDetails : any;
 
 
   constructor(private userService : UserService, private logicService : LogicService) { }
 
   ngOnInit() {
     this.getMyBonus();
+    this.getUserDetails();
   }
 
 
@@ -28,5 +30,35 @@ bonusList : any[];
       console.log(err);
       this.logicService.dismissSpinner();
     });
+  }
+
+
+  getUserDetails(){
+    this.logicService.showSpinner();
+    this.userService.getUserDetails().subscribe(res => {
+      console.log(res);
+      this.logicService.dismissSpinner();
+      this.userDetails = res['user']
+    }, err => {
+      this.logicService.dismissSpinner();
+      console.log(err);
+    });
+  }
+
+  claimBonus(){
+    if(!this.userDetails?.running_investment){
+      this.logicService.showError('You need to have a running investment before bonus can be claimed!');
+    }else{
+      console.log('bonus claimed!');
+      this.userService.claimBonus().subscribe(res => {
+        console.log(res);
+        this.getUserDetails();
+        this.logicService.showSuccess(res['msg'])
+      }, err => {
+        this.logicService.showError(err.error.msg);
+        console.log();
+      })
+
+    }
   }
 }

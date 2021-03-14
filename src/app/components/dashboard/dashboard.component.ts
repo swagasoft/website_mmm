@@ -126,16 +126,21 @@ async fiveKInvestment() {
 
 // payment...
 makePaymentCallback(response: any): void {
-  this.generateReference();
-  response.date = Date.now();
-  this.userService.submitTransaction(response).subscribe( saved => {
-    this.userDetails = saved['newData'];
-    window.location.reload();
+  console.log("RESULT", response);
+  if(response.status == "successful"){
+    this.generateReference();
+    response.date = Date.now();
+    this.userService.submitTransaction(response).subscribe( saved => {
+      this.userDetails = saved['newData'];
+      // window.location.reload();
+      
+    });
+    this.flutterwave.closePaymentModal()
     
-   
- 
-  });
-  this.flutterwave.closePaymentModal()
+  }else{
+    console.log('data')
+  }
+
 }
 
 

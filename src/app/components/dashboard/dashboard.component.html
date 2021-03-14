@@ -51,10 +51,12 @@
               <i class="fab fa-amazon-pay fa-2x pl-2"></i>
             </ion-item>
 
-            <!-- public_key="FLWPUBK_TEST-32c34a10b25063883487eb99f916159a-X" -->
+            <!-- public_key="FLWPUBK-1987e4f625af2a7d3aeeedfb0b9578ba-X" -->
             <div class="row justify-content-center">
               <flutterwave-make-payment  style="background-color: rgb(14, 14, 12);" *ngIf="amountModel?.amount > 99" 
-              public_key="FLWPUBK-1987e4f625af2a7d3aeeedfb0b9578ba-X"
+            
+            public_key="FLWPUBK_TEST-32c34a10b25063883487eb99f916159a-X"
+              
               
               [amount]='amountModel.amount'
               currency='NGN'
@@ -215,7 +217,7 @@
                
               </ion-button>
             
-             <ion-button color="dark" *ngIf="userDetails?.selection == 1 " (click)="unlockOne_k_package()" size="small">
+             <ion-button color="dark" *ngIf="userDetails?.selection <= 1 " (click)="unlockOne_k_package()" size="small">
               Unlock Package
              </ion-button>
             </div>
