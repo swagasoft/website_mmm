@@ -53,11 +53,10 @@
 
             <!-- public_key="FLWPUBK-1987e4f625af2a7d3aeeedfb0b9578ba-X" -->
             <div class="row justify-content-center">
-              <flutterwave-make-payment  style="background-color: rgb(14, 14, 12);" *ngIf="amountModel?.amount > 99" 
-            
-            public_key="FLWPUBK_TEST-32c34a10b25063883487eb99f916159a-X"
-              
-              
+               <flutterwave-make-payment  style="background-color: rgb(14, 14, 12);" *ngIf="amountModel?.amount > 99" 
+          
+           
+            public_key="FLWPUBK-f1ca5c6f7725c08f2e506cb91282cb8f-X"
               [amount]='amountModel.amount'
               currency='NGN'
               payment_options="card"
