@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-    apiBaseUrl:  'https://pocker-money.herokuapp.com/api',
+    apiBaseUrl:  'https://pocket-money.herokuapp.com/api',
      firebaseConfig : {
       apiKey: "AIzaSyA6cNesgrOfuGjAwUcOvzqexrnmrsFqFjE",
       authDomain: "pocket-money-9092c.firebaseapp.com",

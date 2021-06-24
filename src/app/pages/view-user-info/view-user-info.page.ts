@@ -18,7 +18,7 @@ export class ViewUserInfoPage implements OnInit {
   segment = "1st_gen"
 
   constructor(private activateRoute:ActivatedRoute, private userService : UserService,
-    private logicService :LogicService, private auth: AuthService) { }
+    private logicService :LogicService, public auth: AuthService) { }
 
   ngOnInit() {
     this.activateRoute.queryParams.subscribe(params => {
