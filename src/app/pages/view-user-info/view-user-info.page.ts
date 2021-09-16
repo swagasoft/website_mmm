@@ -28,6 +28,7 @@ export class ViewUserInfoPage implements OnInit {
    });
   }
 
+  // sample
   getUserDownLine(username){
     this.logicService.showSpinner();
     this.userService.showUserDownLine(username).subscribe(data => {
